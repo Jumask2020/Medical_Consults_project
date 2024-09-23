@@ -1,3 +1,6 @@
+import 'package:medical_consult_project/core/model/message.dart';
+import 'package:medical_consult_project/core/model/payment_process.dart';
+
 class Consult {
   int? id;
   int? idDoctor;
@@ -7,7 +10,9 @@ class Consult {
   String? diagnosis;
   String? address;
   String? fileFacility;
-  String? stateConsult;
+  PaymentProcess? paymentProcess;
+  StateConsult? stateConsult;
+  List<Message>? message;
 
   Consult(
       {this.id,
@@ -18,6 +23,8 @@ class Consult {
       this.address,
       this.fileFacility,
       this.stateConsult,
+      this.message,
+      this.paymentProcess,
       this.desSickness});
 
   Consult.fromJson(Map<String, dynamic> json) {
@@ -30,6 +37,8 @@ class Consult {
     fileFacility = json['file_facility'];
     stateConsult = json['state_consult'];
     desSickness = json['desSickness'];
+    message = json['message'];
+    paymentProcess = json['paymentProcess'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +51,10 @@ class Consult {
     data['address'] = address;
     data['file_facility'] = fileFacility;
     data['state_consult'] = stateConsult;
+    data['message'] = message;
+    data['paymentProcess'] = paymentProcess;
     return data;
   }
 }
+
+enum StateConsult { opened, closed, waiting }
