@@ -1,6 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+
+import '../../constant/app_color.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -8,21 +8,12 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(onPressed: () {}),
-      appBar: AppBar(),
-      body: const SizedBox(
-        width: double.infinity,
-        // child: Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        child: Text('بلاتنمكمكمككككككك'),
-        //     Container(
-        //       height: 30,
-        //       width: 30,
-        //       color: Colors.amber,
-        //     ),
-        //   ],
-        // ),
+      backgroundColor: AppColor.primaryColor,
+      body: Center(
+        child: Image.asset(
+          'assets/images/logo.png',
+          color: AppColor.secondaryColor,
+        ),
       ),
     );
   }

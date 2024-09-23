@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/helper/route_manager.dart';
 
 void main() async {
@@ -20,15 +21,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: const Locale('ar'),
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: false,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/signup',
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }
