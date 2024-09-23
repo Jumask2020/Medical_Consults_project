@@ -3,6 +3,7 @@ import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
+import 'package:medical_consult_project/helper/regExp_helper.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -41,18 +42,22 @@ class SignupView extends StatelessWidget {
                 height: 30,
               ),
               const MyTextFormField(
+                validator: RegExpHelper.isUserNameValide,
                 labelText: 'الاسم الثلاثي',
                 prefixIcon: Icon(Icons.person),
               ),
               const MyTextFormField(
+                validator: RegExpHelper.isUserEmailValide,
                 labelText: ' البريد الالكتروني',
                 prefixIcon: Icon(Icons.email_outlined),
               ),
               const MyTextFormField(
+                validator: RegExpHelper.isUserPassworValide,
                 labelText: ' كلمة المرور',
                 prefixIcon: Icon(Icons.person),
               ),
               const MyTextFormField(
+                validator: RegExpHelper.isUserPassworValide,
                 labelText: '  تأكيد كلمة المرور',
                 prefixIcon: Icon(Icons.email_outlined),
               ),

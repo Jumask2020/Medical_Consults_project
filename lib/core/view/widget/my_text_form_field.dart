@@ -11,6 +11,7 @@ class MyTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? iconColor;
   final Color? boarderColor;
+  final Color? textColor;
   final Color? hintColor;
   final bool? obscureText;
   final TextInputType? keyboardType;
@@ -21,6 +22,7 @@ class MyTextFormField extends StatelessWidget {
       this.labelText,
       this.boarderColor,
       this.hintColor,
+      this.textColor,
       this.hintText,
       this.icon,
       this.iconColor,
@@ -42,6 +44,8 @@ class MyTextFormField extends StatelessWidget {
         validator: validator,
         obscureText: obscureText ?? false,
         keyboardType: keyboardType,
+
+        style: TextStyle(color: textColor??Colors.black),
         decoration: InputDecoration(
           // contentPadding: const EdgeInsets.symmetric(vertical: 1),
           labelText: labelText,

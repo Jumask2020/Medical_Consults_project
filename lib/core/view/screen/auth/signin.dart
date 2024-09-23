@@ -3,6 +3,7 @@ import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
+import 'package:medical_consult_project/helper/regExp_helper.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -23,15 +24,18 @@ class SigninView extends StatelessWidget {
                   color: AppColor.secondaryColor,
                 ),
                 const MyTextFormField(
+                  validator: RegExpHelper.isUserEmailValide,
                   boarderColor: AppColor.secondaryColor,
                   prefixIcon: Icon(
                     Icons.email,
                     color: AppColor.secondaryColor,
                   ),
                   hintText: 'البريد الالكتروني',
+                  textColor: AppColor.secondaryColor,
                   hintColor: AppColor.secondaryColor,
                 ),
                 const MyTextFormField(
+                  validator: RegExpHelper.isUserPassworValide,
                   boarderColor: AppColor.secondaryColor,
                   prefixIcon: Icon(
                     Icons.email,
@@ -39,6 +43,7 @@ class SigninView extends StatelessWidget {
                   ),
                   hintText: ' كلمة المرور',
                   hintColor: AppColor.secondaryColor,
+                  textColor: AppColor.secondaryColor,
                   suffixIcon: Icon(
                     Icons.visibility_outlined,
                     color: AppColor.secondaryColor,
