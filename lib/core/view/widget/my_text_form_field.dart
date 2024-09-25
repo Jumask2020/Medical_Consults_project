@@ -44,10 +44,9 @@ class MyTextFormField extends StatelessWidget {
         validator: validator,
         obscureText: obscureText ?? false,
         keyboardType: keyboardType,
-
-        style: TextStyle(color: textColor??Colors.black),
+        style: TextStyle(color: textColor ?? Colors.black),
         decoration: InputDecoration(
-          // contentPadding: const EdgeInsets.symmetric(vertical: 1),
+          contentPadding: const EdgeInsets.symmetric(vertical: 2),
           labelText: labelText,
           hintText: hintText,
           hintStyle: TextStyle(color: hintColor ?? Colors.black),
@@ -55,6 +54,13 @@ class MyTextFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           iconColor: iconColor,
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide:
+                  BorderSide(color: boarderColor ?? AppColor.primaryColor)),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(color: boarderColor ?? Colors.red)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:

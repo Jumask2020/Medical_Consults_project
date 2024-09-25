@@ -4,16 +4,16 @@ class ExceptionHelper {
   static handleException(DioException error){
     switch(error.type){
       case DioExceptionType.badResponse :{
-        return "bad response check username or password";
+        return "خطأ في الايميل او كلمة المرور";
       }
       case DioExceptionType.connectionTimeout :{
-        return "server take long time to response";
+        return "حدث خطاء أثناء الاتصال بالسيرفر";
       }
       case DioExceptionType.receiveTimeout :{
-        return "didn't get any response from server";
+        return " لم يتم تلقي اي أستجابه من السيرفير , حاول مرة اخرى";
       }
       default:{
-        return "unknown error please check your internet connection and try later";
+        return "تأكد من الاتصال بالانترنت ثم حاول مرة أخرى";
       }
 
     }

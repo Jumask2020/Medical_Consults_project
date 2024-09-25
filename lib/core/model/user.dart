@@ -4,8 +4,8 @@ class User {
   String? email;
   String? password;
   String? userType;
-  String? phone;
-  String? address;
+  // String? phone;
+  // String? address;
   String? registrationDate;
 
   User(
@@ -14,8 +14,8 @@ class User {
       this.email,
       this.password,
       this.userType,
-      this.phone,
-      this.address,
+      // this.phone,
+      // this.address,
       this.registrationDate});
 
   User.fromJson(Map<String, dynamic> json) {
@@ -24,8 +24,8 @@ class User {
     email = json['Email'];
     password = json['Password'];
     userType = json['User_type'];
-    phone = json['phone'];
-    address = json['address'];
+    // phone = json['phone'];
+    // address = json['address'];
     registrationDate = json['Registration_date'];
   }
 
@@ -36,8 +36,8 @@ class User {
     data['Email'] = email;
     data['Password'] = password;
     data['User_type'] = userType;
-    data['phone'] = phone;
-    data['address'] = address;
+    // data['phone'] = phone;
+    // data['address'] = address;
     data['Registration_date'] = registrationDate;
     return data;
   }

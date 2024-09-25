@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signin.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signup_view.dart';
+import 'package:medical_consult_project/core/view/screen/home_view.dart';
 import 'package:medical_consult_project/core/view/screen/splash_view.dart';
 
 class RouteManager {
@@ -10,13 +11,17 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => const SplashView(),
         );
+        case '/home':
+        return MaterialPageRoute(
+          builder: (context) => const HomeView(),
+        );
       case '/signin':
         return MaterialPageRoute(
-          builder: (context) => const SigninView(),
+          builder: (context) =>  SigninView(),
         );
       case '/signup':
         return MaterialPageRoute(
-          builder: (context) => const SignupView(),
+          builder: (context) =>  SignupView(),
         );
     }
     return null;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/helper/route_manager.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -21,17 +22,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: const Locale('ar'),
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
-        useMaterial3: false,
-      ),
-      initialRoute: '/signup',
-      onGenerateRoute: RouteManager.routeMangaer,
-    );
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: const Locale('ar'),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+          useMaterial3: false,
+        ),
+        initialRoute: '/signup',
+        onGenerateRoute: RouteManager.routeMangaer,
+        );
   }
 }

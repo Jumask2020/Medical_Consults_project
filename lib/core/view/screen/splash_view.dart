@@ -7,6 +7,12 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+      const Duration(seconds: 4),
+      () {
+        return Navigator.pushReplacement(context, '/signup' as Route<Object?>);
+      },
+    );
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
       body: Center(
