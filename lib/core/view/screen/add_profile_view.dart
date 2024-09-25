@@ -5,7 +5,6 @@ import 'package:medical_consult_project/core/view/widget/my_container.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_horizntal_size.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
-import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class AddProfileView extends StatelessWidget {

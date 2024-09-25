@@ -1,34 +1,36 @@
 import 'package:flutter/cupertino.dart';
 
 class MyCircularContanier extends StatelessWidget {
-  
-  double? height;
-  double? width;
-  double radius;
+  final double? height;
+  final double? width;
+  final double? radius;
 
-  Color? color;
-  Widget? child;
+  final Color? color;
+  final Widget? child;
 
-  EdgeInsetsGeometry? margin;
-  EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
 
-  MyCircularContanier(
-      {this.height=100,
+  const MyCircularContanier(
+      {super.key,
+      this.height,
       this.padding,
       this.margin,
       this.child,
       this.color,
-      this.width=100,
-      this.radius = 50});
+      this.width,
+      this.radius});
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
+      width: width ?? 100,
+      height: height ?? 100,
       decoration: BoxDecoration(
-          color: color,
-        borderRadius: BorderRadius.circular(radius),
-         image: DecorationImage( image: AssetImage("assets/images/accountDoctor.png"),fit: BoxFit.cover)     ,
+        color: color,
+        borderRadius: BorderRadius.circular(radius ?? 50),
+        image: const DecorationImage(
+            image: AssetImage("assets/images/accountDoctor.png"),
+            fit: BoxFit.cover),
       ),
     );
   }

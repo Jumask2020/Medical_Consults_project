@@ -1,79 +1,48 @@
-import 'package:medical_consult_project/core/model/hospital.dart';
-import 'package:medical_consult_project/core/model/payment_account.dart';
-
-import 'consult.dart';
-import 'service.dart';
-import 'working_hour.dart';
-
 class Doctor {
-  int? id;
-  String? name;
-  String? specialty;
-  String? subSpecialty;
+  int? doctorID;
+  int? userID;
+  String? specialization;
   String? degree;
-  String? gradutionYear;
-  int? experienceYear;
   String? university;
+  int? graduationYear;
   String? image;
-  List<PaymentAccount>? paymentAccounts;
-  List<ServiceDoctor>? serviceDoctor;
-  List<Consult>? consults;
-  List<Hospital>? hospital;
-  List<WorkingHour>? workingHours;
-  List<String>? languages;
+  String? nationality;
+  int? experience;
 
   Doctor(
-      {this.id,
-      this.name,
-      this.specialty,
-      this.subSpecialty,
+      {this.doctorID,
+      this.userID,
+      this.specialization,
       this.degree,
-      this.gradutionYear,
-      this.experienceYear,
       this.university,
+      this.graduationYear,
       this.image,
-      this.hospital,
-      this.workingHours,
-      this.consults,
-      this.serviceDoctor,
-      this.paymentAccounts,
-      this.languages});
+      this.nationality,
+      this.experience});
 
   Doctor.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    specialty = json['specialty'];
-    subSpecialty = json['sub_specialty'];
+    doctorID = json['Doctor_ID'];
+    userID = json['User_ID'];
+    specialization = json['Specialization'];
     degree = json['degree'];
-    gradutionYear = json['gradution_year'];
-    experienceYear = json['experience_year'];
     university = json['university'];
+    graduationYear = json['graduation_year'];
     image = json['image'];
-    hospital = json['hospital_id'];
-    workingHours = json['working_hours'];
-    languages = json['languages'].cast<String>();
-    consults = json['consult'];
-    serviceDoctor = json['serviceDoctor'];
-    paymentAccounts = json['paymentAccounts'];
+    nationality = json['nationality'];
+    experience = json['experience'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['specialty'] = specialty;
-    data['sub_specialty'] = subSpecialty;
+    data['Doctor_ID'] = doctorID;
+    data['User_ID'] = userID;
+    data['Specialization'] = specialization;
     data['degree'] = degree;
-    data['gradution_year'] = gradutionYear;
-    data['experience_year'] = experienceYear;
     data['university'] = university;
+    data['graduation_year'] = graduationYear;
     data['image'] = image;
-    data['hospital_id'] = hospital;
-    data['working_hours'] = workingHours;
-    data['languages'] = languages;
-    data['consult'] = consults;
-    data['serviceDoctor'] = serviceDoctor?.map((s)=>s.toJson());
-    data['paymentAccounts'] = paymentAccounts?.map((p)=>p.toJson());
+    data['nationality'] = nationality;
+    data['experience'] = experience;
     return data;
   }
 }
