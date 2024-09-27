@@ -116,7 +116,9 @@ class AddProfileView extends StatelessWidget {
                  // minLines: 3,
                 ),
 
-                MyElvatedButton(label: 'حفظ', onPressed: () {})
+                MyElvatedButton(label: 'حفظ', onPressed: () {
+                  Navigator.pushNamed(context, '/displayProfile');
+                })
               ],
             ),
           ),

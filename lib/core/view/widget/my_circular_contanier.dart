@@ -8,7 +8,7 @@ class MyCircularContanier extends StatelessWidget {
 
   Color? color;
   Widget? child;
-
+ final String? assetName ;
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
 
@@ -19,7 +19,8 @@ class MyCircularContanier extends StatelessWidget {
       this.child,
       this.color,
       this.width=100,
-      this.radius = 50});
+      this.radius = 50
+      ,this.assetName});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +29,8 @@ class MyCircularContanier extends StatelessWidget {
       decoration: BoxDecoration(
           color: color,
         borderRadius: BorderRadius.circular(radius),
-         image: DecorationImage( image: AssetImage("assets/images/accountDoctor.png"),fit: BoxFit.cover)     ,
+         image: DecorationImage( image: AssetImage(assetName??"assets/images/accountDoctor.png")
+             ,fit: BoxFit.cover)     ,
       ),
     );
   }
