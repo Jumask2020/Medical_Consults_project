@@ -1,21 +1,14 @@
 import 'package:dio/dio.dart';
 
 class ExceptionHelper {
-  static handleException(DioException error){
-    switch(error.type){
-      case DioExceptionType.badResponse :{
-        return "خطأ في الايميل او كلمة المرور";
-      }
-      case DioExceptionType.connectionTimeout :{
-        return "حدث خطاء أثناء الاتصال بالسيرفر";
-      }
-      case DioExceptionType.receiveTimeout :{
-        return " لم يتم تلقي اي أستجابه من السيرفير , حاول مرة اخرى";
-      }
-      default:{
-        return "تأكد من الاتصال بالانترنت ثم حاول مرة أخرى";
-      }
-
+  static handleException(DioException error) {
+    switch (error.response!.statusCode) {
+      case 200:
+        return 'Login successful';
+      case 422:
+        return 'The email has already been taken';
+      case 401:
+        return 'Invalid login credentials';
     }
   }
 }

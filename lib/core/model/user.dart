@@ -1,44 +1,64 @@
 class User {
-  int? userID;
+  int? id;
   String? name;
   String? email;
   String? password;
-  String? userType;
-  // String? phone;
-  // String? address;
-  String? registrationDate;
+  String? passwordConfirmation;
+  String? city;
+  String? displayMajor;
+  String? phone;
+  String? categoryId;
+  String? avatar;
+  String? bio;
+  String? token;
+  String? role;
 
   User(
-      {this.userID,
+      {this.id,
       this.name,
       this.email,
       this.password,
-      this.userType,
-      // this.phone,
-      // this.address,
-      this.registrationDate});
+      this.passwordConfirmation,
+      this.city,
+      this.displayMajor,
+      this.phone,
+      this.categoryId,
+      this.avatar,
+      this.bio,
+      this.token,
+      this.role});
 
   User.fromJson(Map<String, dynamic> json) {
-    userID = json['User_ID'];
+    id = json['id'];
     name = json['name'];
-    email = json['Email'];
-    password = json['Password'];
-    userType = json['User_type'];
-    // phone = json['phone'];
-    // address = json['address'];
-    registrationDate = json['Registration_date'];
+    email = json['email'];
+    password = json['password'];
+    passwordConfirmation = json['passwordConfirmation'];
+    city = json['city'];
+    displayMajor = json['display_major'];
+    phone = json['phone'];
+    categoryId = json['category_id'];
+    avatar = json['avatar'];
+    bio = json['bio'];
+    token = json['token'];
+    role = json['role'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['User_ID'] = userID;
+    data['id'] = id;
     data['name'] = name;
-    data['Email'] = email;
-    data['Password'] = password;
-    data['User_type'] = userType;
-    // data['phone'] = phone;
-    // data['address'] = address;
-    data['Registration_date'] = registrationDate;
+    data['email'] = email;
+    data['password'] = password;
+    data['passwordConfirmation'] = passwordConfirmation;
+    data['city'] = city;
+    data['display_major'] = displayMajor;
+    data['phone'] = phone;
+    data['category_id'] = categoryId;
+    data['avatar'] = avatar;
+    data['bio'] = bio;
+    data['token'] = token;
+    data['role'] = role;
     return data;
   }
 }
