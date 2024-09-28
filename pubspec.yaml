@@ -35,7 +35,7 @@ dependencies:
   flutter:
     sdk: flutter
   get_storage: ^2.1.1
-  image_picker: ^1.1.2
+  # image_picker: ^1.1.2
   numberpicker: ^2.1.2
   provider: ^6.1.2
 

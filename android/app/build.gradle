@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "askool.com.medical_consult_project"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.1.12297006"
+    ndkVersion = "25.1.8937393"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

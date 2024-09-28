@@ -19,8 +19,17 @@ class HttpHelper extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 
-  Future<Response> getRequest({required String url}) async {
-    return await dio.get(url);
+  Map<String, dynamic> _header(String token) {
+    Map<String, dynamic> header = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    return header;
+  }
+
+  Future<Response> getRequest({required String url, String? token}) async {
+    return await dio.get(url, options: Options(headers: _header(token!)));
   }
 
   Future<Response> postRequest(

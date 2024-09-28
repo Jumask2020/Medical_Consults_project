@@ -10,10 +10,6 @@ import '../model/user.dart';
 class UserVM with ChangeNotifier {
   bool isLoading = false;
   final HttpHelper _httpHelper = HttpHelper.instance;
-  // checkAccept(val) {
-  //   isAccept = val;
-  //   notifyListeners();
-  // }
 
   Future<String> signIn(User user) async {
     try {
@@ -45,7 +41,7 @@ class UserVM with ChangeNotifier {
       isLoading = true;
       notifyListeners();
       debugPrint(user.toJson().toString());
-      Response res = await _httpHelper.postRequest(
+      await _httpHelper.postRequest(
           url: LinkApi.linkSignUp,
           data: user.toJson(),
           options: Options(headers: {
@@ -58,7 +54,6 @@ class UserVM with ChangeNotifier {
 
       return 'Success';
     } on DioException catch (e) {
-      
       return ExceptionHelper.handleException(e);
     } catch (e) {
       return '$e';
