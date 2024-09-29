@@ -6,34 +6,38 @@ class MyElvatedButton extends StatelessWidget {
   final void Function()? onPressed;
   final Color? backgroundColor;
   final Color? textColor;
-  final double? horizontal;
-  final double? vertical;
-  const MyElvatedButton(
-      {super.key,
-      required this.label,
-      required this.onPressed,
-      this.backgroundColor,
-      this.textColor,
-      this.horizontal,
-      this.vertical});
+  // final double? horizontal;
+  // final double? vertical;
+  const MyElvatedButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    this.backgroundColor,
+    this.textColor,
+    // this.horizontal,/
+    // this.vertical
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
       onTap: onPressed,
       child: Container(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width - 60,
         height: 40,
-        margin: EdgeInsets.symmetric(
-            horizontal: horizontal ?? 30, vertical: vertical ?? 10),
+        // margin: EdgeInsets.symmetric(
+        //     horizontal: horizontal ?? 0, vertical: vertical ?? 0),
         decoration: BoxDecoration(
             color: backgroundColor ?? AppColor.primaryColor,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: Center(
           child: Text(
             label,
-            style:  TextStyle(
-                color: textColor?? Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: textColor ?? Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),
