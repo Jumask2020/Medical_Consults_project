@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       // home: Try(),
-      initialRoute: '/signin',
+      initialRoute: '/addProfile',
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }
