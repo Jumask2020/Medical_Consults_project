@@ -1,28 +1,36 @@
 class Hospital {
-  int? id;
-  int? idDoctor;
+  int? hospitalClinicID;
+  int? doctorID;
   String? name;
-  String? location;
+  String? address;
   String? phone;
+  String? type;
 
-  Hospital({this.id, this.name, this.location, this.phone});
+  Hospital(
+      {this.hospitalClinicID,
+      this.doctorID,
+      this.name,
+      this.address,
+      this.phone,
+      this.type});
 
   Hospital.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    hospitalClinicID = json['Hospital_Clinic_ID'];
+    doctorID = json['Doctor_ID'];
     name = json['name'];
-    location = json['location'];
+    address = json['address'];
     phone = json['phone'];
-    idDoctor = json['idDoctor'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['idDoctor'] = idDoctor;
+    data['Hospital_Clinic_ID'] = hospitalClinicID;
+    data['Doctor_ID'] = doctorID;
     data['name'] = name;
-    data['location'] = location;
+    data['address'] = address;
     data['phone'] = phone;
-
+    data['type'] = type;
     return data;
   }
 }
