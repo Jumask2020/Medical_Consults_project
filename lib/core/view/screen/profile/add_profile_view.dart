@@ -6,6 +6,7 @@ import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart
 import 'package:medical_consult_project/core/view/widget/my_horizntal_size.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
+import 'package:medical_consult_project/helper/http_helper.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class AddProfileView extends StatelessWidget {
@@ -20,6 +21,10 @@ class AddProfileView extends StatelessWidget {
     'الخميس',
     'الجمعة'
   ];
+  final TextEditingController name = TextEditingController();
+  final TextEditingController city = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController bio = TextEditingController();
   // final List<int> _morningFrom = List.filled(7, 0);
   // final List<int> _morningTo = List.filled(7, 0);
   // final List<int> _nightFrom = List.filled(7, 0);
@@ -101,15 +106,19 @@ class AddProfileView extends StatelessWidget {
                 // ),
                 MyTextFormField(
                   labelText: "الاسم",
+                  controller:name ,
                 ),
                 MyTextFormField(
                   labelText: "الجوال",
+                  controller: phone,
                 ),
                 MyTextFormField(
                   labelText: "المدينة",
+                  controller: city,
                 ),
                 MyTextFormField(
                   labelText: "نبذة عنك:",
+                  controller: bio,
                   height: 300,
                   maxLines: 10,
                   maxLength: 500,
@@ -118,6 +127,8 @@ class AddProfileView extends StatelessWidget {
 
                 MyElvatedButton(label: 'حفظ', onPressed: () {
                   Navigator.pushNamed(context, '/displayProfile');
+                  HttpHelper.instsnse;
+
                 })
               ],
             ),
