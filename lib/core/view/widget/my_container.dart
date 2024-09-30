@@ -30,6 +30,7 @@ class MyContainer extends StatelessWidget {
     return Container(
       height: height,
       width: width,
+      child: child,
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
@@ -39,7 +40,6 @@ class MyContainer extends StatelessWidget {
               topLeft: Radius.circular(topLeft??10),
               bottomLeft: Radius.circular(bottomLeft??0),
               bottomRight: Radius.circular(bottomRight??0))),
-      child: child,
     );
   }
 }

@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-class HttpHelper extends HttpOverrides {
+import 'storge_helper.dart';
+
+class HttpHelper {
   HttpHelper._();
   static HttpHelper? _httpHelper;
   static HttpHelper get instance {
@@ -12,24 +14,19 @@ class HttpHelper extends HttpOverrides {
 
   Dio dio = Dio();
 
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-
-  Map<String, dynamic> _header(String token) {
-    Map<String, dynamic> header = {
-      'Authorization': 'Bearer $token',
+  Map<String, String> header(){
+    final StorgeHelper storgeHelper = StorgeHelper.instance;
+    String token = storgeHelper.readKey('token');
+    final Map<String, String> header = {
+      'authorization': 'Bearer $token',
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
     return header;
   }
 
-  Future<Response> getRequest({required String url, String? token}) async {
-    return await dio.get(url, options: Options(headers: _header(token!)));
+  Future<Response> getRequest({required String url, Options? options}) async {
+    return await dio.get(url, options: options);
   }
 
   Future<Response> postRequest(

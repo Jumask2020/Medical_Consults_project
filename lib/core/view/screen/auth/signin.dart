@@ -57,21 +57,28 @@ class SigninView extends StatelessWidget {
                           hintColor: AppColor.secondaryColor,
                         ),
                         MyTextFormField(
-                          controller: password,
-                          validator: RegExpHelper.isUserPassworValide,
-                          boarderColor: AppColor.secondaryColor,
-                          prefixIcon: const Icon(
-                            Icons.email,
-                            color: AppColor.secondaryColor,
-                          ),
-                          hintText: ' كلمة المرور',
-                          hintColor: AppColor.secondaryColor,
-                          textColor: AppColor.secondaryColor,
-                          suffixIcon: const Icon(
-                            Icons.visibility_outlined,
-                            color: AppColor.secondaryColor,
-                          ),
-                        ),
+                            controller: password,
+                            validator: RegExpHelper.isUserPassworValide,
+                            boarderColor: AppColor.secondaryColor,
+                            obscureText: u.isVisible,
+                            prefixIcon: const Icon(
+                              Icons.password,
+                              color: AppColor.secondaryColor,
+                            ),
+                            hintText: ' كلمة المرور',
+                            hintColor: AppColor.secondaryColor,
+                            textColor: AppColor.secondaryColor,
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                u.passwordVisible();
+                              },
+                              color: AppColor.secondaryColor,
+                              icon: Icon(
+                                u.isVisible
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility,
+                              ),
+                            )),
                         const MyVerticalSize(),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -94,6 +101,7 @@ class SigninView extends StatelessWidget {
                                 MyElvatedButton(
                                     label: 'تسجيل الدخول',
                                     onPressed: () {
+                                      debugPrint('sssssssssssssss');
                                       User user = User(
                                           email: email.text,
                                           password: password.text);

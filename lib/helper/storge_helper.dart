@@ -8,7 +8,7 @@ class StorgeHelper {
     return _storgeHelper!;
   }
 
-  final GetStorage _box = GetStorage();
+  GetStorage _box = GetStorage();
   readKey(String key) {
     return _box.read(key);
   }

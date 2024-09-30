@@ -7,6 +7,9 @@ class MyTextFormField extends StatelessWidget {
   final double? horizontal;
   final double? vertical;
   final double? height;
+  final int? maxLines;
+  final int? minLines;
+  final int? maxLength;
   final Widget? icon;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -36,11 +39,15 @@ class MyTextFormField extends StatelessWidget {
       this.controller,
       this.prefixIcon,
       this.suffixIcon,
-      this.height});
+      this.height,
+        this.maxLines,
+        this.maxLength,
+        this.minLines
+      });
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: height ?? 45,
+      height: height ?? 60,
       margin: EdgeInsets.symmetric(
           horizontal: horizontal ?? 25, vertical: vertical ?? 5),
       child: TextFormField(
@@ -52,7 +59,8 @@ class MyTextFormField extends StatelessWidget {
         keyboardType: keyboardType,
         style: TextStyle(color: textColor ?? Colors.black),
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 1),
+         // contentPadding: EdgeInsets.symmetric(vertical: 3),
+          contentPadding: const EdgeInsets.symmetric(vertical: 1,horizontal: 5),
           labelText: labelText,
           hintText: hintText,
           hintStyle: TextStyle(color: hintColor ?? Colors.black),
@@ -76,6 +84,9 @@ class MyTextFormField extends StatelessWidget {
               borderSide:
                   BorderSide(color: boarderColor ?? AppColor.primaryColor)),
         ),
+        maxLines:maxLines?? 1 ,
+        minLines:minLines??1 ,
+        maxLength:maxLength ,
       ),
     );
   }

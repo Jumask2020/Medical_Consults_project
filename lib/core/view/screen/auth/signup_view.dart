@@ -27,9 +27,15 @@ class SignupView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             body: SingleChildScrollView(
-                    child: Form(
-                      key: formKey,
-                      child: Column(
+              child: Form(
+                key: formKey,
+                child: u.isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          backgroundColor: AppColor.primaryColor,
+                        ),
+                      )
+                    : Column(
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -73,9 +79,17 @@ class SignupView extends StatelessWidget {
                           ),
                           MyTextFormField(
                             controller: password,
+                            obscureText: u.isVisible,
                             validator: RegExpHelper.isUserPassworValide,
                             labelText: ' كلمة المرور',
-                            prefixIcon: const Icon(Icons.person),
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  u.passwordVisible();
+                                },
+                                icon: Icon(u.isVisible
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility)),
+                            prefixIcon: const Icon(Icons.password),
                           ),
                           MyTextFormField(
                             controller: confirmPassword,
@@ -86,28 +100,17 @@ class SignupView extends StatelessWidget {
                               return null;
                             },
                             labelText: '  تأكيد كلمة المرور',
-                            prefixIcon: const Icon(Icons.email_outlined),
+                            obscureText: u.isVisible,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  u.passwordVisible();
+                                },
+                                icon: Icon(u.isVisible
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility)),
+                            prefixIcon: const Icon(Icons.password),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(
-                          //       horizontal: 30, vertical: 10),
-                          //   child: Row(
-                          //     children: [
-                          //       Consumer<UserVM>(builder: (context, u, child) {
-                          //         return Checkbox(
-                          //             value: u.isAccept,
-                          //             onChanged: (val) {
-                          //               u.checkAccept(val);
-                          //             });
-                          //       }),
-                          //       const Text(
-                          //         'أوافق على جميع الشروط والاحكام',
-                          //         style: TextStyle(fontWeight: FontWeight.bold),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          // Consumer<UserVM>(builder: (context, u, child) {
+
                           const MyVerticalSize(
                             height: 30,
                           ),
@@ -122,14 +125,13 @@ class SignupView extends StatelessWidget {
                                   password: password.text,
                                   passwordConfirmation: confirmPassword.text,
                                   role: 'Doctor',
-                             
                                 );
                                 _userVM.signUp(user).then((x) {
                                   debugPrint(x);
                                   if (x == 'Success') {
                                     Navigator.pushNamedAndRemoveUntil(
                                       context,
-                                      '/home',
+                                      '/displayProfile',
                                       (route) => false,
                                     );
                                   } else {
@@ -171,8 +173,8 @@ class SignupView extends StatelessWidget {
                           )
                         ],
                       ),
-                    ),
-                  ),
+              ),
+            ),
           ),
         );
       }),

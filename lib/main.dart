@@ -11,7 +11,6 @@ import 'helper/http_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  HttpOverrides.global = HttpHelper.instance;
   await GetStorage.init();
   runApp(
     EasyLocalization(
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: false,
       ),
-      initialRoute: '/signup',
+      initialRoute: '/addProfile',
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }
