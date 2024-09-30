@@ -1,4 +1,4 @@
-class User {
+class Profile {
   int? id;
   String? name;
   String? email;
@@ -9,7 +9,7 @@ class User {
   String? avatar;
   String? bio;
 
-  User(
+  Profile(
       {this.id,
         this.name,
         this.email,
@@ -20,7 +20,7 @@ class User {
         this.avatar,
         this.bio});
 
-  User.fromJson(Map<String, dynamic> json) {
+  Profile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];

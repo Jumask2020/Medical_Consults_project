@@ -1,35 +1,36 @@
 class Message {
-  int? id;
-  int? idConsult;
-  String? date, message, fileFacility, sender;
+  int? messageID;
+  int? paidConsultationID;
+  int? senderID;
+  String? messageText;
+  String? sentDateTime;
+  Null messageFile;
 
   Message(
-      {this.id,
-      this.idConsult,
-      this.date,
-      this.message,
-      this.fileFacility,
-      this.sender});
+      {this.messageID,
+      this.paidConsultationID,
+      this.senderID,
+      this.messageText,
+      this.sentDateTime,
+      this.messageFile});
 
   Message.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    idConsult = json['idDoctor'];
-    date = json['date'];
-    message = json['message'];
-    fileFacility = json['fileFacility'];
-    sender = json['sender'];
+    messageID = json['Message_ID'];
+    paidConsultationID = json['Paid_Consultation_ID'];
+    senderID = json['Sender_ID'];
+    messageText = json['Message_Text'];
+    sentDateTime = json['Sent_DateTime'];
+    messageFile = json['Message_File'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-
-    data['id'] = id;
-    data['idDoctor'] = idConsult;
-    data['date'] = data;
-    data['message'] = message;
-    data['fileFacility'] = fileFacility;
-    data['sender'] = sender;
-
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Message_ID'] = messageID;
+    data['Paid_Consultation_ID'] = paidConsultationID;
+    data['Sender_ID'] = senderID;
+    data['Message_Text'] = messageText;
+    data['Sent_DateTime'] = sentDateTime;
+    data['Message_File'] = messageFile;
     return data;
   }
 }

@@ -1,5 +1,7 @@
 import 'package:medical_consult_project/core/model/profile.dart';
 
+import 'user.dart';
+
 class Profile {
   int? code;
   String? message;

@@ -1,45 +1,36 @@
-import 'package:medical_consult_project/core/model/consult.dart';
-
 class Patient {
-  int? id;
-  String? name;
-  int? age;
-  String? sex;
-  String? phone;
-  String? phoneWatsapp;
-  String? address;
-  List<Consult>? consultPatient;
+  int? patientID;
+  int? userID;
+  String? dateOfBirth;
+  int? weight;
+  int? height;
+  String? medicalHistory;
 
   Patient(
-      {this.id,
-      this.name,
-      this.age,
-      this.sex,
-      this.phone,
-      this.phoneWatsapp,
-      this.address,
-      this.consultPatient});
+      {this.patientID,
+      this.userID,
+      this.dateOfBirth,
+      this.weight,
+      this.height,
+      this.medicalHistory});
 
   Patient.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    age = json['age'];
-    sex = json['sex'];
-    phone = json['phone'];
-    phoneWatsapp = json['phone_watsapp'];
-    address = json['address'];
-    consultPatient = json['consultPatient'];
+    patientID = json['Patient_ID'];
+    userID = json['User_ID'];
+    dateOfBirth = json['Date_of_Birth'];
+    weight = json['weight'];
+    height = json['height'];
+    medicalHistory = json['Medical_history'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['age'] = age;
-    data['sex'] = sex;
-    data['phone'] = phone;
-    data['phone_watsapp'] = phoneWatsapp;
-    data['address'] = address;
+    data['Patient_ID'] = patientID;
+    data['User_ID'] = userID;
+    data['Date_of_Birth'] = dateOfBirth;
+    data['weight'] = weight;
+    data['height'] = height;
+    data['Medical_history'] = medicalHistory;
     return data;
   }
 }
