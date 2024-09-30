@@ -33,6 +33,7 @@ class MyCircularContanier extends StatelessWidget {
           color: color,
         borderRadius: BorderRadius.circular(radius??5),
          image: DecorationImage( image: AssetImage(assetName??"assets/images/accountDoctor.png")
+         // image: DecorationImage( image: AssetImage("assets/images/$assetName"??"assets/images/accountDoctor.png")
              ,fit: BoxFit.cover)     ,
       ),
     );

@@ -37,8 +37,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: false,
       ),
+// <<<<<<< jehad-branch
+//       // home: Try(),
+//       initialRoute: '/newConsults',
+// =======
 
       initialRoute: '/addProfile',
+// >>>>>>> main
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }

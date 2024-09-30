@@ -6,11 +6,13 @@ import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart
 import 'package:medical_consult_project/core/view/widget/my_horizntal_size.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
+import 'package:medical_consult_project/core/viewmodels/profile_vm.dart';
 import 'package:medical_consult_project/helper/http_helper.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class AddProfileView extends StatelessWidget {
   AddProfileView({super.key});
+  ProfileVm profileVm=ProfileVm();
   final List<bool> _checkboxValues = List.generate(7, (index) => false);
   final List<String> _days = [
     'السبت',
@@ -126,8 +128,10 @@ class AddProfileView extends StatelessWidget {
                 ),
 
                 MyElvatedButton(label: 'حفظ', onPressed: () {
-                  Navigator.pushNamed(context, '/displayProfile');
-                  HttpHelper.instsnse;
+                 profileVm.getProfileInfo();
+                  //Navigator.pushNamed(context, '/displayProfile');
+
+                  //HttpHelper.instsnse;
 
                 })
               ],
