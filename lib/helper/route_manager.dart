@@ -4,6 +4,7 @@ import 'package:medical_consult_project/core/view/screen/consults/new_consults_v
 import 'package:medical_consult_project/core/view/screen/profile/add_profile_view.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signin.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signup_view.dart';
+import 'package:medical_consult_project/core/view/screen/home_view.dart';
 import 'package:medical_consult_project/core/view/screen/profile/display_profile_view.dart';
 import 'package:medical_consult_project/core/view/screen/splash_view.dart';
 
@@ -16,13 +17,17 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => const SplashView(),
         );
+        case '/home':
+        return MaterialPageRoute(
+          builder: (context) => const HomeView(),
+        );
       case '/signin':
         return MaterialPageRoute(
-          builder: (context) => const SigninView(),
+          builder: (context) =>  SigninView(),
         );
       case '/signup':
         return MaterialPageRoute(
-          builder: (context) => const SignupView(),
+          builder: (context) =>  SignupView(),
         );
         case '/addProfile':
         return MaterialPageRoute(

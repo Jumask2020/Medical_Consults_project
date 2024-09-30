@@ -1,25 +1,33 @@
 class WorkingHour {
-  Days? day;
-  int? idDoctor;
-  String? toTime;
-  String? fromTime;
+  int? workingHourID;
+  int? doctorID;
+  String? day;
+  String? startTime;
+  String? endTime;
 
-  WorkingHour({this.day, this.fromTime, this.toTime, this.idDoctor});
+  WorkingHour(
+      {this.workingHourID,
+      this.doctorID,
+      this.day,
+      this.startTime,
+      this.endTime});
 
-  WorkingHour.formJson(Map<String, dynamic> json) {
-    day = json['day'];
-    idDoctor = json['idDoctor'];
-    toTime = json['toTime'];
-    fromTime = json['fromTime'];
+  WorkingHour.fromJson(Map<String, dynamic> json) {
+    workingHourID = json['Working_Hour_ID'];
+    doctorID = json['Doctor_ID'];
+    day = json['Day'];
+    startTime = json['start_time'];
+    endTime = json['end_time'];
   }
 
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> data = {};
-    data['day'] = day;
-    data['toTime'] = toTime;
-    data['fromTime'] = fromTime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Working_Hour_ID'] = workingHourID;
+    data['Doctor_ID'] = doctorID;
+    data['Day'] = day;
+    data['start_time'] = startTime;
+    data['end_time'] = endTime;
     return data;
   }
 }
 
-enum Days { saturday, sunday, monday, tuesday, wednesday, thursday, friday }
