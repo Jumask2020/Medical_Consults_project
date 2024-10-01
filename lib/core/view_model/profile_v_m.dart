@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:medical_consult_project/core/constant/link_api.dart';
 import 'package:medical_consult_project/core/model/profile.dart';
 import 'package:medical_consult_project/helper/http_helper.dart';
+import 'package:medical_consult_project/helper/storge_helper.dart';
 
 
 class ProfileVM {
@@ -15,7 +16,7 @@ class ProfileVM {
           data: profile.toJson(),
           options: Options(headers: _httpHelper.header()));
       debugPrint('Success');
-      return 'تم أكمال الملف الشخصي بنجاح';
+      return 'Success';
     }on DioException catch(e){
       return '$e';
     }catch (e){
@@ -23,18 +24,17 @@ class ProfileVM {
     }
   }
 
-  Future<Object> fetchProfile(Profile profile) async {
-    try {
+  Future<Profile> fetchProfile() async {
+    StorgeHelper storgeHelper = StorgeHelper.instance;
+    print(storgeHelper.readKey('token'));
       Response res = await _httpHelper.getRequest(
-          url: LinkApi.linkPostProfile,
+          url: LinkApi.linkGetProfile,
           options: Options(headers: _httpHelper.header()));
       debugPrint('Success');
-      Profile profile = Profile.fromJson(res.data['data']);
+      Profile profile = Profile.fromJson(res.data['user']);
+    debugPrint('=========================');
+
       return profile;
-    }on DioException catch(e){
-      return '$e';
-    }catch (e){
-      return '$e';
-    }
+
   }
 }

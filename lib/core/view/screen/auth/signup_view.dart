@@ -131,7 +131,7 @@ class SignupView extends StatelessWidget {
                                   if (x == 'Success') {
                                     Navigator.pushNamedAndRemoveUntil(
                                       context,
-                                      '/displayProfile',
+                                      '/addProfile',
                                       (route) => false,
                                     );
                                   } else {

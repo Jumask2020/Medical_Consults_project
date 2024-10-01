@@ -21,7 +21,7 @@ class User {
     name = json['name'];
     email = json['email'];
     password = json['password'];
-    passwordConfirmation = json['passwordConfirmation'];
+    passwordConfirmation = json['password_confirmation'];
     token = json['token'];
     role = json['role'];
   }
@@ -32,7 +32,7 @@ class User {
     data['name'] = name;
     data['email'] = email;
     data['password'] = password;
-    data['passwordConfirmation'] = passwordConfirmation;
+    data['password_confirmation'] = passwordConfirmation;
     data['token'] = token;
     data['role'] = role;
     return data;

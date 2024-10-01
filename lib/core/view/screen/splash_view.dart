@@ -5,17 +5,25 @@ import 'package:medical_consult_project/core/view/screen/auth/signin.dart';
 import 'package:medical_consult_project/core/view/widget/my_container.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
 
+import '../../../helper/storge_helper.dart';
 import '../../constant/app_color.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+
+  @override
+  void initState() {
+    checkUser(context);
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 7),() {
-      Navigator.pushNamedAndRemoveUntil(context, "/signin", (route) => false);
-    },
-    );
     return Scaffold(
       backgroundColor: AppColor.secondaryColor,
       body: Column(
@@ -29,6 +37,22 @@ class SplashView extends StatelessWidget {
           Text("يرجى الإنتظار  ...",style: TextStyle(fontFamily: "LBC",color: AppColor.primaryColor),),
         ],
       ),
+    );
+
+
+
+  }
+
+  checkUser(BuildContext context)async {
+    Future.delayed(Duration(seconds: 4),() {
+      StorgeHelper s = StorgeHelper.instance;
+      if(s.readKey('token')==null) {
+        Navigator.pushNamedAndRemoveUntil(context, "/signin", (route) => false);
+      }else {
+        Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+      }
+      }
+
     );
   }
 }

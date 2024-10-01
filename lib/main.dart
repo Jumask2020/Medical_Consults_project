@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: false,
       ),
-      initialRoute: '/addProfile',
+      initialRoute: '/splash',
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }

@@ -15,8 +15,8 @@ class HttpHelper {
   Dio dio = Dio();
 
   Map<String, String> header(){
-    final StorgeHelper storgeHelper = StorgeHelper.instance;
-    String token = storgeHelper.readKey('token');
+    final StorgeHelper storageHelper = StorgeHelper.instance;
+    String token = storageHelper.readKey('token');
     final Map<String, String> header = {
       'authorization': 'Bearer $token',
       'Content-Type': 'application/json',

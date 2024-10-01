@@ -17,6 +17,8 @@ class UserVM with ChangeNotifier {
   }
 
   final HttpHelper _httpHelper = HttpHelper.instance;
+  final StorgeHelper storgeHelper = StorgeHelper.instance;
+
 
   final Map<String, String> _header = {
     'Content-Type': 'application/json',
@@ -71,16 +73,16 @@ class UserVM with ChangeNotifier {
     }
   }
 
+  logOut(){
+    storgeHelper.deleteAllKey();
+  }
+
   forgetPassword() {}
 
 
 
   saveUser(User u) {
-    StorgeHelper storgeHelper = StorgeHelper.instance;
     storgeHelper.writeKey('id', u.id);
-    storgeHelper.writeKey('email', u.email);
-    storgeHelper.writeKey('name', u.name);
     storgeHelper.writeKey('token', u.token);
-
   }
 }
