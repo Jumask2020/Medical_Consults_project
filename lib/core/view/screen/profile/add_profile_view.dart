@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:medical_consult_project/core/view/widget/my_circular_contanier.dart';
-
-import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
-
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
+
+import 'package:medical_consult_project/core/viewmodels/profile_vm.dart';
+
+import '../../widget/my_elevated_button.dart';
+
 
 class AddProfileView extends StatelessWidget {
   AddProfileView({super.key});
+  ProfileVm profileVm=ProfileVm();
   final List<bool> _checkboxValues = List.generate(7, (index) => false);
   final List<String> _days = [
     'السبت',
@@ -93,9 +96,11 @@ class AddProfileView extends StatelessWidget {
                   // minLines: 3,
                 ),
 
-                MyElvatedButton(
-                    label: 'حفظ',
-                    onPressed: () {
+                MyElvatedButton(label: 'حفظ', onPressed: () {
+                 profileVm.getProfileInfo();
+                  //Navigator.pushNamed(context, '/displayProfile');
+
+                  //HttpHelper.instsnse;
 
                       Navigator.pushNamed(context, '/displayProfile');
                     })

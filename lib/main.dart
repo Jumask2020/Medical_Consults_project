@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       initialRoute: '/addProfile',
+// >>>>>>> main
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }
