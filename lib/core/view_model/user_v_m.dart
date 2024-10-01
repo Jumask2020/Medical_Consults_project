@@ -23,12 +23,10 @@ class UserVM with ChangeNotifier {
     'Accept': 'application/json'
   };
 
-
   Future<String> signIn(User user) async {
     try {
       isLoading = true;
       notifyListeners();
-
       debugPrint('--------------------------1');
       Response res = await _httpHelper.postRequest(
           url: LinkApi.linkSignIn,
@@ -68,7 +66,6 @@ class UserVM with ChangeNotifier {
       return 'Success';
     } on DioException catch (e) {
       return '$e';
-
     } catch (e) {
       return '$e';
     }

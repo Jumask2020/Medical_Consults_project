@@ -51,7 +51,7 @@ class MyTextFormField extends StatelessWidget {
       margin: EdgeInsets.symmetric(
           horizontal: horizontal ?? 25, vertical: vertical ?? 5),
       child: TextFormField(
-        //onTap: onTap,
+       //onTap: onTap,
 
         controller: controller,
         validator: validator,
