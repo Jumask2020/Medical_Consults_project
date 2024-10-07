@@ -1,58 +1,59 @@
-import 'package:medical_consult_project/core/model/patient.dart';
+import 'patient.dart';
 
 class Consult {
-  String? title;
-  String? patientName;
-  String? description;
-  int? patientId;
-  String? doctorId;
-  String? status;
-  String? attachedFile;
-  String? age;
-  String? gender;
   int? id;
+  String? title;
+  String? description;
+  String? status;
+  int? age;
+  String? gender;
+  String? attachedFile;
   Patient? patient;
+  String? createdAt;
+  String? updatedAt;
 
   Consult(
-      {this.title,
-        this.patientName,
+      {this.id,
+        this.title,
         this.description,
-        this.patientId,
-        this.doctorId,
         this.status,
-        this.attachedFile,
         this.age,
         this.gender,
-        this.id,
-      this.patient});
+        this.attachedFile,
+        this.patient,
+        this.createdAt,
+        this.updatedAt});
 
   Consult.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     title = json['title'];
-    patientName = json['patient_name'];
     description = json['description'];
-    patientId = json['patient_id'];
-    doctorId = json['doctor_id'];
     status = json['status'];
-    attachedFile = json['attached_file'];
     age = json['age'];
     gender = json['gender'];
-    id = json['id'];
-    patient = json['patient'].map((p)=>Patient.fromJson(p));
+    attachedFile = json['attached_file'];
+    patient =
+    json['patient'] != null ? new Patient.fromJson(json['patient']) : null;
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['title'] = this.title;
-    data['patient_name'] = this.patientName;
     data['description'] = this.description;
-    data['patient_id'] = this.patientId;
-    data['doctor_id'] = this.doctorId;
     data['status'] = this.status;
-    data['attached_file'] = this.attachedFile;
     data['age'] = this.age;
     data['gender'] = this.gender;
-    data['id'] = this.id;
-    data['patient'] = patient!.toJson();
+    data['attached_file'] = this.attachedFile;
+    if (this.patient != null) {
+      data['patient'] = this.patient!.toJson();
+    }
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }
+
+

@@ -18,18 +18,18 @@ class NewConsults extends StatelessWidget {
               if(snapshot.connectionState == ConnectionState.waiting){
                 return Center(child: CircularProgressIndicator(),);
               }
-             // var consult = snapshot.data;
+             var consult = snapshot.data;
              //  print(consult);
              return ListView.builder(
 
-                  itemCount: snapshot.data!.length??10,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (context,index){
                     return ListTile(
                       onTap: (){
-                        Navigator.pushNamed(context, "/consultDetails");
+                        Navigator.pushNamed(context, "/consultDetails",arguments: consult[index]);
                       },
-                      title: Text("عنوان الإستشارة"),
-                      subtitle: Text("وصف الإستشارة"),
+                      title: Text(consult![index].title!),
+                      subtitle: Text(consult[index].description!),
                       leading:Image.asset("assets/images/logo.jpg") ,
                       trailing: IconButton(onPressed: (){
                         Navigator.pushNamed(context, "/chatting");
