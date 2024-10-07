@@ -5,6 +5,7 @@ import 'package:medical_consult_project/core/constant/link_api.dart';
 import 'package:medical_consult_project/helper/http_helper.dart';
 import 'package:medical_consult_project/helper/storge_helper.dart';
 
+import '../../helper/exception_helper.dart';
 import '../model/user.dart';
 
 class UserVM with ChangeNotifier {
@@ -43,7 +44,7 @@ class UserVM with ChangeNotifier {
       debugPrint(u.token);
       return 'Success';
     } on DioException catch (e) {
-      return '$e';
+      return ExceptionHelper.handleExceptionArabic(e);
     } catch (e) {
       return '$e';
     }
@@ -67,7 +68,8 @@ class UserVM with ChangeNotifier {
 
       return 'Success';
     } on DioException catch (e) {
-      return '$e';
+      return ExceptionHelper.handleExceptionArabic(e);
+
     } catch (e) {
       return '$e';
     }

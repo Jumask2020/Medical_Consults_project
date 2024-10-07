@@ -21,6 +21,7 @@ class MyTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final Color? cursorColor;
   //void Function()? onTap ;
   const MyTextFormField(
       {super.key,
@@ -42,7 +43,7 @@ class MyTextFormField extends StatelessWidget {
       this.height,
         this.maxLines,
         this.maxLength,
-        this.minLines
+        this.minLines, this.cursorColor
       });
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class MyTextFormField extends StatelessWidget {
           horizontal: horizontal ?? 25, vertical: vertical ?? 5),
       child: TextFormField(
        //onTap: onTap,
-
+        cursorColor: cursorColor??Colors.black,
         controller: controller,
         validator: validator,
         obscureText: obscureText ?? false,

@@ -22,7 +22,7 @@ class NewConsults extends StatelessWidget {
              //  print(consult);
              return ListView.builder(
 
-                  itemCount: snapshot.data!.length,
+                  itemCount: snapshot.data!.length??10,
                   itemBuilder: (context,index){
                     return ListTile(
                       onTap: (){

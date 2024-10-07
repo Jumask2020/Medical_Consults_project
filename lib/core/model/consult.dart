@@ -1,49 +1,58 @@
-import 'patient.dart';
+import 'package:medical_consult_project/core/model/patient.dart';
 
 class Consult {
-  int? id;
   String? title;
+  String? patientName;
   String? description;
+  int? patientId;
+  String? doctorId;
   String? status;
-  int? age;
+  String? attachedFile;
+  String? age;
   String? gender;
-  String? files;
+  int? id;
   Patient? patient;
 
   Consult(
-      {this.id,
-        this.title,
+      {this.title,
+        this.patientName,
         this.description,
+        this.patientId,
+        this.doctorId,
         this.status,
+        this.attachedFile,
         this.age,
         this.gender,
-        this.files,
-        this.patient});
+        this.id,
+      this.patient});
 
   Consult.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
     title = json['title'];
+    patientName = json['patient_name'];
     description = json['description'];
+    patientId = json['patient_id'];
+    doctorId = json['doctor_id'];
     status = json['status'];
+    attachedFile = json['attached_file'];
     age = json['age'];
     gender = json['gender'];
-    files = json['files'];
-    patient =
-    json['patient'] != null ? new Patient.fromJson(json['patient']) : null;
+    id = json['id'];
+    patient = json['patient'].map((p)=>Patient.fromJson(p));
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     data['title'] = this.title;
+    data['patient_name'] = this.patientName;
     data['description'] = this.description;
+    data['patient_id'] = this.patientId;
+    data['doctor_id'] = this.doctorId;
     data['status'] = this.status;
+    data['attached_file'] = this.attachedFile;
     data['age'] = this.age;
     data['gender'] = this.gender;
-    data['files'] = this.files;
-    if (this.patient != null) {
-      data['patient'] = this.patient!.toJson();
-    }
+    data['id'] = this.id;
+    data['patient'] = patient!.toJson();
     return data;
   }
 }

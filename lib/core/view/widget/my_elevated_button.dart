@@ -20,27 +20,39 @@ class MyElvatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: const BorderRadius.all(Radius.circular(20)),
-      onTap: onPressed,
-      child: Container(
-        width: MediaQuery.of(context).size.width - 60,
-        height: 40,
-        // margin: EdgeInsets.symmetric(
-        //     horizontal: horizontal ?? 0, vertical: vertical ?? 0),
-        decoration: BoxDecoration(
-            color: backgroundColor ?? AppColor.primaryColor,
-            borderRadius: const BorderRadius.all(Radius.circular(20))),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-                color: textColor ?? Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
+    return MaterialButton(
+      onPressed: onPressed,
+      child: Text(
+        label,
+        style: TextStyle(
+            color: textColor ?? Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
       ),
+      height: 40,
+      minWidth: MediaQuery.of(context).size.width - 60,
+      color:backgroundColor?? AppColor.primaryColor,
+      shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(30),),
     );
+    // return InkWell(
+    //   borderRadius: const BorderRadius.all(Radius.circular(20)),
+    //   onTap: onPressed,
+    //   child: Container(
+    //     width: MediaQuery.of(context).size.width - 60,
+    //     height: 40,
+    //     decoration: BoxDecoration(
+    //         color: backgroundColor ?? AppColor.primaryColor,
+    //         borderRadius: const BorderRadius.all(Radius.circular(20))),
+    //     child: Center(
+    //       child: Text(
+    //         label,
+    //         style: TextStyle(
+    //             color: textColor ?? Colors.white,
+    //             fontSize: 20,
+    //             fontWeight: FontWeight.bold),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }
