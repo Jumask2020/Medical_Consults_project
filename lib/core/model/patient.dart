@@ -1,36 +1,27 @@
 class Patient {
-  int? patientID;
-  int? userID;
-  String? dateOfBirth;
-  int? weight;
-  int? height;
-  String? medicalHistory;
+  int? id;
+  String? name;
+  String? phone;
+  int? age;
+  String? gender;
 
-  Patient(
-      {this.patientID,
-      this.userID,
-      this.dateOfBirth,
-      this.weight,
-      this.height,
-      this.medicalHistory});
+  Patient({this.id, this.name, this.phone, this.age, this.gender});
 
   Patient.fromJson(Map<String, dynamic> json) {
-    patientID = json['Patient_ID'];
-    userID = json['User_ID'];
-    dateOfBirth = json['Date_of_Birth'];
-    weight = json['weight'];
-    height = json['height'];
-    medicalHistory = json['Medical_history'];
+    id = json['id'];
+    name = json['name'];
+    phone = json['phone'];
+    age = json['age'];
+    gender = json['gender'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['Patient_ID'] = patientID;
-    data['User_ID'] = userID;
-    data['Date_of_Birth'] = dateOfBirth;
-    data['weight'] = weight;
-    data['height'] = height;
-    data['Medical_history'] = medicalHistory;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    data['age'] = this.age;
+    data['gender'] = this.gender;
     return data;
   }
 }

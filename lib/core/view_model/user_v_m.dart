@@ -74,7 +74,7 @@ class UserVM with ChangeNotifier {
   }
 
   logOut(){
-    storgeHelper.deleteAllKey();
+   storgeHelper.deleteAllKey();
   }
 
   forgetPassword() {}
