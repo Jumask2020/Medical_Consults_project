@@ -1,4 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
@@ -110,8 +110,8 @@ class SigninView extends StatelessWidget {
                                           Navigator.pushReplacementNamed(
                                               context, '/home');
                                         } else {
-                                          AwesomeDialog(
-                                              context: context, body: Text(x));
+                                          // AwesomeDialog(
+                                          //     context: context, body: Text(x));
                                         }
                                       });
                                     }),

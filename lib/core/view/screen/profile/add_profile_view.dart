@@ -1,4 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/model/profile.dart';
 
@@ -116,10 +116,10 @@ class AddProfileView extends StatelessWidget {
                             (route) => false,
                           );
                         } else {
-                          AwesomeDialog(
-                              context: context,
-                              body: Text(x),
-                              animType: AnimType.topSlide);
+                          // AwesomeDialog(
+                          //     context: context,
+                          //     body: Text(x),
+                          //     animType: AnimType.topSlide);
                         }
                       });
                     })

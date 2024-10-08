@@ -14,11 +14,13 @@ class HttpHelper {
 
   Dio dio = Dio();
 
-  Map<String, String> header(){
+  Map<String, String> header() {
     final StorgeHelper storageHelper = StorgeHelper.instance;
-    String token = storageHelper.readKey('token');
+    // String token = storageHelper.readKey('token');
     final Map<String, String> header = {
-      'authorization': 'Bearer $token',
+      // 'authorization': 'Bearer $token',
+      'authorization':
+          'Bearer19|YfKAJ3eoEhiLHdI1LLYn1JiWHw7XIlMqTRm60sJz1b2e5e60',
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
