@@ -20,56 +20,56 @@ class Chatting extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              FutureBuilder(
-                  future: consultVM.getData(),
-                  builder: (ctx, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      debugPrint("=====snapshot========");
+              // FutureBuilder(
+              //     future: consultVM.fetchAllConsult(),
+              //     builder: (ctx, snapshot) {
+              //       if (snapshot.connectionState == ConnectionState.done) {
+              //         debugPrint("=====snapshot========");
 
-                      print(snapshot.data);
-                      debugPrint("=============");
+              //         print(snapshot.data);
+              //         debugPrint("=============");
 
-                      return MyContainer(
-                        color: AppColor.backgroundColor,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text("عنوان الاستشارة"),
-                                Text(snapshot.data!.title.toString()),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("اسم المريض"),
-                                Text(snapshot.data!.patientName.toString()),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("الجنس"),
-                                Text(snapshot.data!.gender.toString()),
-                                MyHorizntalSize(
-                                  width: 90,
-                                ),
-                                Text("العمر"),
-                                Text(snapshot.data!.age.toString()),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("وصف الاستشارة"),
-                                Text(snapshot.data!.description.toString()),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      return Text("Error");
-                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error")));
-                    }
-                  }),
+              //         return MyContainer(
+              //           color: AppColor.backgroundColor,
+              //           child: Column(
+              //             children: [
+              //               Row(
+              //                 children: [
+              //                   Text("عنوان الاستشارة"),
+              //                   Text(snapshot.data!.title.toString()),
+              //                 ],
+              //               ),
+              //               Row(
+              //                 children: [
+              //                   Text("اسم المريض"),
+              //                   Text(snapshot.data!.patientName.toString()),
+              //                 ],
+              //               ),
+              //               Row(
+              //                 children: [
+              //                   Text("الجنس"),
+              //                   Text(snapshot.data!.gender.toString()),
+              //                   MyHorizntalSize(
+              //                     width: 90,
+              //                   ),
+              //                   Text("العمر"),
+              //                   Text(snapshot.data!.age.toString()),
+              //                 ],
+              //               ),
+              //               Row(
+              //                 children: [
+              //                   Text("وصف الاستشارة"),
+              //                   Text(snapshot.data!.description.toString()),
+              //                 ],
+              //               ),
+              //             ],
+              //           ),
+              //         );
+              //       } else {
+              //         return Text("Error");
+              //         // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error")));
+              //       }
+              //     }),
               MessageBubble(
                 message: 'مرحبا انا الطبيب',
                 isMe: true,

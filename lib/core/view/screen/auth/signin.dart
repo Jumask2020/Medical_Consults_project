@@ -17,6 +17,7 @@ class SigninView extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final UserVM _userVM = UserVM();
 
   @override
@@ -32,54 +33,63 @@ class SigninView extends StatelessWidget {
                   ),
                 )
               : Scaffold(
+                  key: scaffoldKey,
                   backgroundColor: AppColor.primaryColor,
                   body: SizedBox(
                     height: MediaQuery.of(context).size.height,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Image.asset(
-                          height: 250,
-                          width: 250,
-                          'assets/images/logo.png',
-                          color: AppColor.secondaryColor,
-                        ),
-                        MyTextFormField(
-                          controller: email,
-                          validator: RegExpHelper.isUserEmailValide,
-                          boarderColor: AppColor.secondaryColor,
-                          prefixIcon: const Icon(
-                            Icons.email,
-                            color: AppColor.secondaryColor,
-                          ),
-                          hintText: 'البريد الالكتروني',
-                          textColor: AppColor.secondaryColor,
-                          hintColor: AppColor.secondaryColor,
-                        ),
-                        MyTextFormField(
-                            controller: password,
-                            validator: RegExpHelper.isUserPassworValide,
-                            boarderColor: AppColor.secondaryColor,
-                            obscureText: u.isVisible,
-                            prefixIcon: const Icon(
-                              Icons.password,
-                              color: AppColor.secondaryColor,
-                            ),
-                            hintText: ' كلمة المرور',
-                            hintColor: AppColor.secondaryColor,
-                            textColor: AppColor.secondaryColor,
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                u.passwordVisible();
-                              },
-                              color: AppColor.secondaryColor,
-                              icon: Icon(
-                                u.isVisible
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility,
+                        SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                height: 250,
+                                width: 250,
+                                'assets/images/logo.png',
+                                color: AppColor.secondaryColor,
                               ),
-                            )),
-                        const MyVerticalSize(),
+                              MyTextFormField(
+                                cursorColor: AppColor.secondaryColor,
+                                controller: email,
+                                validator: RegExpHelper.isUserEmailValide,
+                                boarderColor: AppColor.secondaryColor,
+                                prefixIcon: const Icon(
+                                  Icons.email,
+                                  color: AppColor.secondaryColor,
+                                ),
+                                hintText: 'البريد الالكتروني',
+                                textColor: AppColor.secondaryColor,
+                                hintColor: AppColor.secondaryColor,
+                              ),
+                              MyTextFormField(
+                                  cursorColor: AppColor.secondaryColor,
+                                  controller: password,
+                                  validator: RegExpHelper.isUserPassworValide,
+                                  boarderColor: AppColor.secondaryColor,
+                                  obscureText: u.isVisible,
+                                  prefixIcon: const Icon(
+                                    Icons.password,
+                                    color: AppColor.secondaryColor,
+                                  ),
+                                  hintText: ' كلمة المرور',
+                                  hintColor: AppColor.secondaryColor,
+                                  textColor: AppColor.secondaryColor,
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      u.passwordVisible();
+                                    },
+                                    color: AppColor.secondaryColor,
+                                    icon: Icon(
+                                      u.isVisible
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.visibility,
+                                    ),
+                                  )),
+                              const MyVerticalSize(),
+                            ],
+                          ),
+                        ),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           width: double.infinity,
@@ -89,63 +99,61 @@ class SigninView extends StatelessWidget {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(35),
                                   topRight: Radius.circular(35))),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                const MyVerticalSize(),
-                                Text(
-                                  'نسيت كلمة المرور',
-                                  style: TextStyle(color: Colors.grey[600]),
-                                ),
-                                const MyVerticalSize(),
-                                MyElvatedButton(
-                                    label: 'تسجيل الدخول',
-                                    onPressed: () {
-                                      debugPrint('sssssssssssssss');
-                                      User user = User(
-                                          email: email.text,
-                                          password: password.text);
-                                      _userVM.signIn(user).then((x) {
-                                        if (x == 'Success') {
-                                          Navigator.pushReplacementNamed(
-                                              context, '/home');
-                                        } else {
-                                          // AwesomeDialog(
-                                          //     context: context, body: Text(x));
-                                        }
-                                      });
-                                    }),
-                                const MyVerticalSize(
-                                  height: 5,
-                                ),
-                                const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                        width: 100,
-                                        child: Divider(
-                                          color: Colors.black,
-                                        )),
-                                    Text('  أو  '),
-                                    SizedBox(
-                                        width: 100,
-                                        child: Divider(
-                                          color: Colors.black,
-                                        )),
-                                  ],
-                                ),
-                                const MyVerticalSize(
-                                  height: 5,
-                                ),
-                                MyElvatedButton(
-                                    textColor: Colors.black,
-                                    backgroundColor: AppColor.tertiaryColor,
-                                    label: 'إنشاء حساب جديد',
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/signup');
-                                    })
-                              ],
-                            ),
+                          child: Column(
+                            children: [
+                              const MyVerticalSize(),
+                              Text(
+                                'نسيت كلمة المرور',
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                              const MyVerticalSize(),
+                              MyElvatedButton(
+                                  label: 'تسجيل الدخول',
+                                  onPressed: () {
+                                    debugPrint('sssssssssssssss');
+                                    User user = User(
+                                        email: email.text,
+                                        password: password.text);
+                                    _userVM.signIn(user).then((x) {
+                                      if (x == 'Success') {
+                                        Navigator.pushReplacementNamed(
+                                            context, '/home');
+                                      } else {
+                                        _showAlertDialog(
+                                            context, '', x.toString());
+                                      }
+                                    });
+                                  }),
+                              const MyVerticalSize(
+                                height: 5,
+                              ),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                      width: 100,
+                                      child: Divider(
+                                        color: Colors.black,
+                                      )),
+                                  Text('  أو  '),
+                                  SizedBox(
+                                      width: 100,
+                                      child: Divider(
+                                        color: Colors.black,
+                                      )),
+                                ],
+                              ),
+                              const MyVerticalSize(
+                                height: 5,
+                              ),
+                              MyElvatedButton(
+                                  textColor: Colors.black,
+                                  backgroundColor: AppColor.tertiaryColor,
+                                  label: 'إنشاء حساب جديد',
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/signup');
+                                  })
+                            ],
                           ),
                         )
                       ],
@@ -154,6 +162,34 @@ class SigninView extends StatelessWidget {
                 );
         }),
       ),
+    );
+  }
+
+  void _showAlertDialog(BuildContext context, String text, String? title) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title ?? ''),
+          content: Text(
+            text,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -15,12 +15,12 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   List<Widget> page = [
     NewConsults(),
-    Chatting(),
+    // Chatting(),
     DashBoardView(),
     DisplayProfileView(),
-    DisplayProfileView(),
+    // DisplayProfileView(),
   ];
-  int indexPage = 2;
+  int indexPage = 0;
   void selectPage(int index) {
     setState(() {
       indexPage = index;
@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
 
 
     return  Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: AppColor.secondaryColor,
      body:  page[indexPage],
       bottomNavigationBar: BottomAppBar(
         // color: Colors.teal,
@@ -46,14 +46,14 @@ class _HomeViewState extends State<HomeView> {
               color: Colors.transparent,
               border: Border(
                 top: BorderSide(
-                  color: Colors.grey,
+                  color: AppColor.secondaryColor,
                   width: 0.5,
                 ),
               ),
             ),
             child: BottomNavigationBar(
               onTap: selectPage,
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: AppColor.secondaryColor,
               unselectedItemColor: AppColor.primaryColor,
               selectedItemColor: Colors.purple,
               showSelectedLabels: false,
@@ -64,21 +64,21 @@ class _HomeViewState extends State<HomeView> {
                   icon: Icon(Icons.home),
                   label: 'Profile',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.rss_feed),
-                  label: 'Feeds',
-                ),
+                // BottomNavigationBarItem(
+                //   icon: Icon(Icons.rss_feed),
+                //   label: 'Feeds',
+                // ),
                 BottomNavigationBarItem(
 
                   icon: Icon(null),
                   label: 'Search',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.shopping_bag,
-                  ),
-                  label: 'Cart',
-                ),
+                // BottomNavigationBarItem(
+                //   icon: Icon(
+                //     Icons.shopping_bag,
+                //   ),
+                //   label: 'Cart',
+                // ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label: 'User',

@@ -27,6 +27,8 @@ class ProfileVM {
   Future<Profile> fetchProfile() async {
     StorgeHelper storgeHelper = StorgeHelper.instance;
     print(storgeHelper.readKey('token'));
+    print(storgeHelper.readKey('id'));
+
       Response res = await _httpHelper.getRequest(
           url: LinkApi.linkGetProfile,
           options: Options(headers: _httpHelper.header()));

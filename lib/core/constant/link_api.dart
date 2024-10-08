@@ -4,6 +4,5 @@ class LinkApi {
   static const String linkSignIn = '$linkRoot/login';
   static const String linkPostProfile = '$linkRoot/profile/update';
   static const String linkGetProfile = '$linkRoot/profile';
-  static const String linkGetConsultation = '$linkRoot/consultations';
-  static const String linkGetReplaies = '$linkRoot//consultations/9/replies';
+  static const String linkGetConsults = '$linkRoot/consultations';
 }

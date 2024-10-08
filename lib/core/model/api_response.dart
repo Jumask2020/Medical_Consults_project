@@ -1,13 +1,13 @@
 import 'user.dart';
 
-class Profile1 {
+class ApiResponse {
   int? code;
   String? message;
   User? user;
 
-  Profile1({this.code, this.message, this.user});
+  ApiResponse({this.code, this.message, this.user});
 
-  Profile1.fromJson(Map<String, dynamic> json) {
+  ApiResponse.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
     user = json['user'] != null ? User.fromJson(json['user']) : null;

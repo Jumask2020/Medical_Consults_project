@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_consult_project/core/model/consult.dart';
 import 'package:medical_consult_project/core/view/screen/consults/consult_details_view.dart';
 import 'package:medical_consult_project/core/view/screen/consults/new_consults_view.dart';
 import 'package:medical_consult_project/core/view/screen/profile/add_profile_view.dart';
@@ -40,6 +41,7 @@ class RouteManager {
           builder: (context) =>  NewConsults(),
         );case '/consultDetails':
         return MaterialPageRoute(
+          settings: RouteSettings(arguments: route.arguments),
           builder: (context) =>  ConsultDetails(),
         );case '/chatting':
         return MaterialPageRoute(
