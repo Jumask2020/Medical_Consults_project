@@ -84,22 +84,23 @@ class Chatting extends StatelessWidget {
                 isMe: false,
               ),
 
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       flex: 9,
-              //       child: MyTextFormField(
-              //         hintText: ".....اكتب الرد هنا",
-              //       ),
-              //     ),
-              //     Expanded(
-              //         child:
-              //             IconButton(onPressed: () {}, icon: Icon(Icons.send))),
-              //     Expanded(
-              //         child: IconButton(
-              //             onPressed: () {}, icon: Icon(Icons.insert_chart))),
-              //   ],
-              // ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 9,
+                    child: MyTextFormField(
+                        hintText: ".....اكتب الرد هنا",
+                        suffixIcon: IconButton(
+                            onPressed: () {}, icon: Icon(Icons.send))),
+                  ),
+                  // Expanded(
+                  //     child:
+                  //         IconButton(onPressed: () {}, icon: Icon(Icons.send))),
+                  Expanded(
+                      child: IconButton(
+                          onPressed: () {}, icon: Icon(Icons.insert_chart))),
+                ],
+              ),
             ],
           ),
         ),
