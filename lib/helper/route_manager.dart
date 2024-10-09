@@ -18,35 +18,39 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => const SplashView(),
         );
-        case '/home':
+      case '/home':
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
         );
       case '/signin':
         return MaterialPageRoute(
-          builder: (context) =>  SigninView(),
+          builder: (context) => SigninView(),
         );
       case '/signup':
         return MaterialPageRoute(
-          builder: (context) =>  SignupView(),
+          builder: (context) => SignupView(),
         );
-        case '/addProfile':
+      case '/addProfile':
         return MaterialPageRoute(
-          builder: (context) =>  AddProfileView(),
-        ); case '/displayProfile':
+          builder: (context) => AddProfileView(),
+        );
+      case '/displayProfile':
         return MaterialPageRoute(
-          builder: (context) =>  DisplayProfileView(),
-        ); case '/newConsults':
+          builder: (context) => DisplayProfileView(),
+        );
+      case '/newConsults':
         return MaterialPageRoute(
-          builder: (context) =>  NewConsults(),
-        );case '/consultDetails':
+          builder: (context) => NewConsults(),
+        );
+      case '/consultDetails':
         return MaterialPageRoute(
           settings: RouteSettings(arguments: route.arguments),
-          builder: (context) =>  ConsultDetails(),
-        );case '/chatting':
-        return MaterialPageRoute(
-          builder: (context) =>  Chatting(),
+          builder: (context) => ConsultDetails(),
         );
+      case '/chatting':
+        return MaterialPageRoute(
+            builder: (context) => Chatting(),
+            settings: RouteSettings(arguments: route.arguments));
     }
     return null;
   }
