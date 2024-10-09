@@ -10,8 +10,23 @@ class DashBoardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
     return  Scaffold(
+      appBar: AppBar(title: Text('DashBorad'),),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Container(
+            height: 200,
+            margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: AppColor.tertiaryColor
+            ),
+            child: Column(children: [
+
+            ],),
+          )
+        ],),
+      ),
     );
   }
 }

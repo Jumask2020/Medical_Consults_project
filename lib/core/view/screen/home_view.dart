@@ -15,10 +15,10 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   List<Widget> page = [
     NewConsults(),
-    // Chatting(),
+
     DashBoardView(),
     DisplayProfileView(),
-    // DisplayProfileView(),
+
   ];
   int indexPage = 0;
   void selectPage(int index) {
@@ -26,13 +26,13 @@ class _HomeViewState extends State<HomeView> {
       indexPage = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
-
-    return  Scaffold(
+    return Scaffold(
+      extendBody: true,
       backgroundColor: AppColor.secondaryColor,
-     body:  page[indexPage],
+      body: page[indexPage],
       bottomNavigationBar: BottomAppBar(
         // color: Colors.teal,
         shape:CircularNotchedRectangle() ,
@@ -53,9 +53,10 @@ class _HomeViewState extends State<HomeView> {
             ),
             child: BottomNavigationBar(
               onTap: selectPage,
-              backgroundColor: AppColor.secondaryColor,
-              unselectedItemColor: AppColor.primaryColor,
-              selectedItemColor: Colors.purple,
+              backgroundColor: AppColor.primaryColor,
+              unselectedItemColor: AppColor.secondaryColor,
+              selectedItemColor: Colors.black,
+
               showSelectedLabels: false,
               showUnselectedLabels: false,
               currentIndex: 1,
@@ -64,21 +65,13 @@ class _HomeViewState extends State<HomeView> {
                   icon: Icon(Icons.home),
                   label: 'Profile',
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Icon(Icons.rss_feed),
-                //   label: 'Feeds',
-                // ),
+
                 BottomNavigationBarItem(
 
                   icon: Icon(null),
                   label: 'Search',
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Icon(
-                //     Icons.shopping_bag,
-                //   ),
-                //   label: 'Cart',
-                // ),
+
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label: 'User',
@@ -99,7 +92,7 @@ class _HomeViewState extends State<HomeView> {
           elevation: 5,
           child: Icon(Icons.home),
           onPressed: ()  => setState(() {
-            indexPage = 2;
+            indexPage = 1;
           }),
 
         ),

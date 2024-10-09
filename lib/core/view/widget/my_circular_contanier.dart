@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 
 class MyCircularContanier extends StatelessWidget {
@@ -10,11 +12,12 @@ class MyCircularContanier extends StatelessWidget {
 
   final Color? color;
   final Widget? child;
+  final String? pathImage;
 
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
 
-  const MyCircularContanier(
+   MyCircularContanier(
       {super.key,
       this.height,
       this.padding,
@@ -23,7 +26,7 @@ class MyCircularContanier extends StatelessWidget {
       this.color,
       this.width,
       this.radius,
-        this.assetName});
+        this.assetName, this.pathImage});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,10 +34,12 @@ class MyCircularContanier extends StatelessWidget {
       height: height ?? 100,
       decoration: BoxDecoration(
           color: color,
-        borderRadius: BorderRadius.circular(radius??5),
-         image: DecorationImage( image: AssetImage(assetName??"assets/images/accountDoctor.png")
+        borderRadius: BorderRadius.circular(radius??50),
+         image: DecorationImage( image: pathImage != null
+             ? FileImage(File(pathImage!),)
+             :  AssetImage(assetName??"assets/images/accountDoctor.png")
          // image: DecorationImage( image: AssetImage("assets/images/$assetName"??"assets/images/accountDoctor.png")
-             ,fit: BoxFit.cover)     ,
+             ,fit: BoxFit.fill)     ,
       ),
     );
   }

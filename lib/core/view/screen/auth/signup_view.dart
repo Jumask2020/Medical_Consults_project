@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
+import 'package:medical_consult_project/core/global/components/showLoading.dart';
 import 'package:medical_consult_project/core/model/user.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
@@ -26,16 +27,16 @@ class SignupView extends StatelessWidget {
       child: Consumer<UserVM>(builder: (context, u, child) {
         return SafeArea(
           child: Scaffold(
-            body: SingleChildScrollView(
+            body:u.isLoading
+                ? const Center(
+              child: CircularProgressIndicator(
+                backgroundColor: AppColor.primaryColor,
+              ),
+            )
+                :  SingleChildScrollView(
               child: Form(
                 key: formKey,
-                child: u.isLoading
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          backgroundColor: AppColor.primaryColor,
-                        ),
-                      )
-                    : Column(
+                child: Column(
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -110,7 +111,6 @@ class SignupView extends StatelessWidget {
                                     : Icons.visibility)),
                             prefixIcon: const Icon(Icons.password),
                           ),
-
                           const MyVerticalSize(
                             height: 30,
                           ),
@@ -126,26 +126,25 @@ class SignupView extends StatelessWidget {
                                   passwordConfirmation: confirmPassword.text,
                                   role: 'Doctor',
                                 );
-                                _userVM.signUp(user).then((x) {
+                                // u.loading(true);
+                                ShowLoading(context);
+                                await _userVM.signUp(user).then((x) {
                                   debugPrint(x);
+
                                   if (x == 'Success') {
                                     Navigator.pushNamedAndRemoveUntil(
                                       context,
                                       '/addProfile',
                                       (route) => false,
                                     );
+                                    // Navigator.pop(context);
                                   } else {
-                                    AwesomeDialog(
-                                            context: context,
-                                            body: Text(x),
-                                            animType: AnimType.topSlide)
-                                        .show();
+                                    // u.loading(false);
+
+                                    _showAlertDialog(context, x, '');
                                   }
+                                  // Navigator.pop(context);
                                 });
-                                // const Center(
-                                //   child: CircularProgressIndicator(),
-                                // );
-                                // }
                               }),
                           const MyVerticalSize(),
                           Padding(
@@ -178,6 +177,32 @@ class SignupView extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+  void _showAlertDialog(BuildContext context,String text,String? title) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title??''),
+          content: Text(text,),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

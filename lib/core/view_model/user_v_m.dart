@@ -16,6 +16,10 @@ class UserVM with ChangeNotifier {
     isVisible = !isVisible;
     notifyListeners();
   }
+  loading(bool isloading){
+    isLoading = isloading;
+    notifyListeners();
+  }
 
   final HttpHelper _httpHelper = HttpHelper.instance;
   final StorgeHelper storgeHelper = StorgeHelper.instance;
@@ -28,16 +32,12 @@ class UserVM with ChangeNotifier {
 
   Future<String> signIn(User user) async {
     try {
-      isLoading = true;
-      notifyListeners();
       debugPrint('--------------------------1');
       Response res = await _httpHelper.postRequest(
           url: LinkApi.linkSignIn,
           data: user.toJson(),
           options: Options(headers: _header));
       debugPrint('--------------------------2');
-      isLoading = false;
-      notifyListeners();
       User u = User.fromJson(res.data['data']);
       debugPrint(u.email);
       saveUser(u);
@@ -52,8 +52,7 @@ class UserVM with ChangeNotifier {
 
   Future<String> signUp(User user) async {
     try {
-      isLoading = true;
-      notifyListeners();
+
       debugPrint('----------------------1');
       Response res = await _httpHelper.postRequest(
           url: LinkApi.linkSignUp,
@@ -61,8 +60,6 @@ class UserVM with ChangeNotifier {
           options: Options(headers: _header));
       debugPrint('----------------------2');
 
-      isLoading = false;
-      notifyListeners();
       User u = User.fromJson(res.data['data']);
       saveUser(u);
 

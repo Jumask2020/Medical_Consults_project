@@ -61,7 +61,7 @@ class MyTextFormField extends StatelessWidget {
         style: TextStyle(color: textColor ?? Colors.black),
         decoration: InputDecoration(
          // contentPadding: EdgeInsets.symmetric(vertical: 3),
-          contentPadding: const EdgeInsets.symmetric(vertical: 1,horizontal: 5),
+          contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
           labelText: labelText,
           hintText: hintText,
           hintStyle: TextStyle(color: hintColor ?? Colors.black),
