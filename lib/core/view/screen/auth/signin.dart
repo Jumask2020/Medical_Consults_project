@@ -1,4 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
@@ -51,7 +51,6 @@ class SigninView extends StatelessWidget {
                               ),
                               MyTextFormField(
                                 cursorColor: AppColor.secondaryColor,
-
                                 controller: email,
                                 validator: RegExpHelper.isUserEmailValide,
                                 boarderColor: AppColor.secondaryColor,
@@ -64,7 +63,7 @@ class SigninView extends StatelessWidget {
                                 hintColor: AppColor.secondaryColor,
                               ),
                               MyTextFormField(
-                                cursorColor: AppColor.secondaryColor,
+                                  cursorColor: AppColor.secondaryColor,
                                   controller: password,
                                   validator: RegExpHelper.isUserPassworValide,
                                   boarderColor: AppColor.secondaryColor,
@@ -120,7 +119,8 @@ class SigninView extends StatelessWidget {
                                         Navigator.pushReplacementNamed(
                                             context, '/home');
                                       } else {
-                                          _showAlertDialog(context,'' ,x.toString());
+                                        _showAlertDialog(
+                                            context, '', x.toString());
                                       }
                                     });
                                   }),
@@ -164,13 +164,16 @@ class SigninView extends StatelessWidget {
       ),
     );
   }
-  void _showAlertDialog(BuildContext context,String text,String? title) {
+
+  void _showAlertDialog(BuildContext context, String text, String? title) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(title??''),
-          content: Text(text,),
+          title: Text(title ?? ''),
+          content: Text(
+            text,
+          ),
           actions: [
             TextButton(
               onPressed: () {
@@ -181,7 +184,6 @@ class SigninView extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-
               },
               child: Text('OK'),
             ),

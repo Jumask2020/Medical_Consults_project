@@ -1,4 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/core/model/user.dart';
@@ -135,11 +135,12 @@ class SignupView extends StatelessWidget {
                                       (route) => false,
                                     );
                                   } else {
-                                    AwesomeDialog(
-                                            context: context,
-                                            body: Text(x),
-                                            animType: AnimType.topSlide)
-                                        .show();
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data")));
+                                    // AwesomeDialog(
+                                    //         context: context,
+                                    //         body: Text(x),
+                                    //         animType: AnimType.topSlide)
+                                    //     .show();
                                   }
                                 });
                                 // const Center(
