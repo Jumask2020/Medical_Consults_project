@@ -110,8 +110,8 @@ class Chatting extends StatelessWidget {
                                               .showSnackBar(SnackBar(
                                                   content: Text(
                                                       "Send Successfully")));
-                                          // obj.requestMessage =
-                                          //     message.toString();
+                                          obj.requestMessage =
+                                              message.toString();
                                           message.text = "";
                                           // replayvm.replay.message.toString();
                                         }

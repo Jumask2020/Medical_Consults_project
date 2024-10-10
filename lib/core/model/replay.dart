@@ -24,4 +24,10 @@ class Replay {
     data['id'] = this.id;
     return data;
   }
+
+  Map<String, dynamic> MessagetoJson() {
+    final Map<String, dynamic> messageData = new Map<String, dynamic>();
+    messageData['message'] = this.message;
+    return messageData;
+  }
 }

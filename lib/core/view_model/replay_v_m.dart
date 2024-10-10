@@ -15,7 +15,7 @@ class ReplayVM extends ChangeNotifier {
     try {
       httpHelper.postRequest(
           url: LinkApi.linkGetReplaies,
-          data: replay.toJson(),
+          data: replay.MessagetoJson(),
           options: Options(headers: httpHelper.header()));
       debugPrint('Success');
       debugPrint('1|THE MESSAGE${requestMessage}');
