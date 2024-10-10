@@ -87,7 +87,7 @@ class ConsultDetails extends StatelessWidget {
                       MyVerticalSize(height: 30,),
 
                       MyElvatedButton(label: "رد", onPressed: (){
-                        Navigator.pushNamed(context, "/chatting");
+                        Navigator.pushNamed(context, "/chatting",arguments: consult.id.toString());
                       })
 
                             ],

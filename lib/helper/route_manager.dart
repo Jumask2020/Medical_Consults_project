@@ -52,7 +52,8 @@ class RouteManager {
         );
       case '/chatting':
         return MaterialPageRoute(
-          builder: (context) => Chatting(),
+          settings: RouteSettings(arguments: route.arguments),
+          builder: (context) => Chatting(id: route.arguments as String,),
         );
         case '/dashboard':
         return MaterialPageRoute(

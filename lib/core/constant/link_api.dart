@@ -6,4 +6,8 @@ class LinkApi {
   static const String linkGetProfile = '$linkRoot/profile';
   static const String linkGetConsults = '$linkRoot/consultations';
 
+  String linkGetReplaies(String id){
+    return '$linkRoot/consultations/$id/replies';
+  }
+
 }

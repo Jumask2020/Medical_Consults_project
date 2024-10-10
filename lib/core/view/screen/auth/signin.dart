@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
-import 'package:medical_consult_project/core/global/components/showLoading.dart';
+import 'package:medical_consult_project/core/global/components/showLoadingComp.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
@@ -122,7 +122,7 @@ class SigninView extends StatelessWidget {
                             label: 'تسجيل الدخول',
                             onPressed: () {
                               debugPrint('sssssssssssssss');
-                              ShowLoading(context);
+                              ShowLoadingFunction(context);
                               User user = User(
                                   email: email.text,
                                   password: password.text);

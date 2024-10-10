@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
-import 'package:medical_consult_project/core/global/components/showLoading.dart';
+import 'package:medical_consult_project/core/global/components/showLoadingComp.dart';
 import 'package:medical_consult_project/core/model/user.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_text_form_field.dart';
@@ -127,7 +127,7 @@ class SignupView extends StatelessWidget {
                                   role: 'Doctor',
                                 );
                                 // u.loading(true);
-                                ShowLoading(context);
+                                ShowLoadingFunction(context);
                                 await _userVM.signUp(user).then((x) {
                                   debugPrint(x);
 

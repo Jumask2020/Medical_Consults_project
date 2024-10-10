@@ -33,27 +33,35 @@ class ProfileVM extends ChangeNotifier {
 }
 
   getDataProfile(Profile profile) async{
-    // print(pickerFile!.path);
+    print(profile.phone);
     FormData formData = FormData.fromMap({
       'phone': profile.phone,
       'city': profile.city,
       'bio': profile.bio,
-      // 'category_id': profile.categoryId,
       'display_major': profile.displayMajor,
-      'avatar': pickerFile!.path == ''
-          ? null
-          : await MultipartFile.fromFile(pickerFile!.path,
-              filename: pickerFile!.path.split('/').last)
+      // 'avatar': pickerFile!.path == ''
+      //     ? null
+      //     : await MultipartFile.fromFile(pickerFile!.path,
+      //         filename: pickerFile!.path.split('/').last)
     });
+    print(formData.toString());
     return formData;
   }
 
   Future<String> addProfile(Profile profile) async {
     try {
-      await _httpHelper.postRequest(
+     Response res =  await _httpHelper.postRequest(
           url: LinkApi.linkPostProfile,
-          data: getDataProfile(profile),
-          options: Options(headers: header()));
+          data:  FormData.fromMap({
+            'phone': profile.phone,
+            'city': profile.city,
+            'bio': profile.bio,
+            'display_major': profile.displayMajor,
+            // 'avatar':  await MultipartFile.fromFile(pickerFile!.path,
+            //         filename: pickerFile!.path.split('/').last)
+          }),
+          options: Options(headers: _httpHelper.header(type: 'multipart/form-data')));
+     print(res.data['user']);
       debugPrint('Success');
       return 'Success';
     } on DioException catch (e) {
