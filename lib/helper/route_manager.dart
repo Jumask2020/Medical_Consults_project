@@ -59,6 +59,10 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => DashBoardView(),
         );
+      case '/chatting':
+        return MaterialPageRoute(
+            builder: (context) => Chatting(id: route.arguments as String,),
+            settings: RouteSettings(arguments: route.arguments));
     }
     return null;
   }

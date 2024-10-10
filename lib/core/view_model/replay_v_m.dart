@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -11,9 +10,6 @@ import 'package:flutter/foundation.dart';
 class ReplayVM extends ChangeNotifier {
   HttpHelper httpHelper = HttpHelper.instance;
   String? requestMessage;
-
-  final StreamController<List<Replay>?> _controllerUser =
-  StreamController<List<Replay>>.broadcast();
 
   sendMessage(){
     notifyListeners();

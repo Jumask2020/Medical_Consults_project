@@ -17,7 +17,8 @@ class ConsultVM {
           url: LinkApi.linkGetConsults,
           options: Options(headers: _httpHelper.header()));
       List<dynamic> data = res.data['data'];
-      List<Consult> consults = data.map<Consult>((c) => Consult.fromJson(c)).toList();
+      List<Consult> consults =
+          data.map<Consult>((c) => Consult.fromJson(c)).toList();
       return consults;
     } on DioException catch (e) {
       return ExceptionHelper.handleExceptionArabic(e);
@@ -30,7 +31,8 @@ class ConsultVM {
           url: LinkApi.linkGetConsults,
           options: Options(headers: _httpHelper.header()));
       List<dynamic> data = res.data['data'];
-      List<Consult> consults = data.map<Consult>((c) => Consult.fromJson(c)).toList();
+      List<Consult> consults =
+          data.map<Consult>((c) => Consult.fromJson(c)).toList();
       return consults;
     } on DioException catch (e) {
       return ExceptionHelper.handleExceptionArabic(e);

@@ -12,13 +12,13 @@ class Replay {
 
   Replay(
       {this.id,
-        this.consultationId,
-        this.userId,
-        this.message,
-        this.file,
-        this.createdAt,
-        this.updatedAt,
-        this.user});
+      this.consultationId,
+      this.userId,
+      this.message,
+      this.file,
+      this.createdAt,
+      this.updatedAt,
+      this.user});
 
   Replay.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -28,20 +28,20 @@ class Replay {
     file = json['file'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['consultation_id'] = this.consultationId;
-    data['user_id'] = this.userId;
-    data['message'] = this.message;
-    data['file'] = this.file;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['consultation_id'] = consultationId;
+    data['user_id'] = userId;
+    data['message'] = message;
+    data['file'] = file;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
     return data;
   }

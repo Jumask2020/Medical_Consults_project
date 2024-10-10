@@ -1,4 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/core/global/components/showLoadingComp.dart';
