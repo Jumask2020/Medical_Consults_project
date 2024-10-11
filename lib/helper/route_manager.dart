@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/model/consult.dart';
 import 'package:medical_consult_project/core/view/screen/consults/consult_details_view.dart';
 import 'package:medical_consult_project/core/view/screen/consults/new_consults_view.dart';
+import 'package:medical_consult_project/core/view/screen/dashboard_view.dart';
 import 'package:medical_consult_project/core/view/screen/profile/add_profile_view.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signin.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signup_view.dart';
@@ -41,6 +42,10 @@ class RouteManager {
       case '/newConsults':
         return MaterialPageRoute(
           builder: (context) => NewConsults(),
+        );
+      case '/dashBoard':
+        return MaterialPageRoute(
+          builder: (context) => DashBoardView(),
         );
       case '/consultDetails':
         return MaterialPageRoute(
