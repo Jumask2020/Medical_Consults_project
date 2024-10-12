@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:medical_consult_project/core/constant/link_api.dart';
 import 'package:medical_consult_project/core/global/components/uploadimage.dart';
+import 'package:medical_consult_project/core/model/categry.dart';
 import 'package:medical_consult_project/core/model/profile.dart';
 import 'package:medical_consult_project/helper/http_helper.dart';
 import 'package:medical_consult_project/helper/uploadImage.dart';
@@ -13,6 +14,7 @@ class ProfileVM extends ChangeNotifier {
   final HttpHelper _httpHelper = HttpHelper.instance;
   final StorgeHelper _storgeHelper = StorgeHelper.instance;
   // Profile profile = Profile();
+  String? doctorName;
 
   File? pickerFile;
   getImage(File path) {
@@ -20,48 +22,59 @@ class ProfileVM extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Future uploadImageToApi(dynamic imagePath)async{
-  //   return await MultipartFile.fromFile(imagePath.path,filename: imagePath.path.split('/').last);
-  // }
-  Map<String,dynamic> header(){
-  Map<String,dynamic> header  = {
-    'authorization': 'Bearer ${_storgeHelper.readKey('token')}',
-    'Content-Type': 'multipart/form-data',
-    'Accept': 'application/json'
-  };
-  return header;
-}
-
-  getDataProfile(Profile profile) async{
-    print(profile.phone);
-    FormData formData = FormData.fromMap({
-      'phone': profile.phone,
-      'city': profile.city,
-      'bio': profile.bio,
-      'display_major': profile.displayMajor,
-      // 'avatar': pickerFile!.path == ''
-      //     ? null
-      //     : await MultipartFile.fromFile(pickerFile!.path,
-      //         filename: pickerFile!.path.split('/').last)
-    });
-    print(formData.toString());
-    return formData;
+  selectedSpec() {
+    notifyListeners();
   }
 
-  Future<String> addProfile(Profile profile) async {
+  ProfileVM() {
+    // getAllCategries();
+    fetchProfile();
+  }
+  List<String> nameSpac=[
+    "مخ واعصاب",
+    "مخ واعصاب",
+    "مخ واعصاب",
+    "مخ واعصاب",
+  ];
+  // getNameSpacification(){
+  //   specializationOptions!.forEach((element) {
+  //       nameSpac.add(element.name!);
+  //   },);
+  // }
+
+  List<Categry>? specializationOptions = [];
+  getAllCategries() async {
     try {
-     Response res =  await _httpHelper.postRequest(
+      Response res = await _httpHelper.getRequest(
+          url: LinkApi.linkGetCategories,
+          options: Options(headers: _httpHelper.header()));
+      specializationOptions =
+          res.data['data'][''].map<Categry>((c) => Categry.fromJson(c)).toList();
+    } on DioException catch (e) {
+
+    } catch (e) {}
+  }
+
+  Future<String> addProfile(Profile profile, {File? filePath}) async {
+    try {
+      Response res = await _httpHelper.postRequest(
           url: LinkApi.linkPostProfile,
-          data:  FormData.fromMap({
-            'phone': profile.phone,
-            'city': profile.city,
-            'bio': profile.bio,
-            'display_major': profile.displayMajor,
-            // 'avatar':  await MultipartFile.fromFile(pickerFile!.path,
-            //         filename: pickerFile!.path.split('/').last)
-          }),
-          options: Options(headers: _httpHelper.header(type: 'multipart/form-data')));
-     print(res.data['user']);
+          data: FormData.fromMap(
+            {
+              'phone': profile.phone,
+              'city': profile.city,
+              'bio': profile.bio,
+              'display_major': profile.displayMajor,
+              // 'category_id':profile.categoryId,
+              // 'avatar': await MultipartFile.fromFile(filePath!.path,
+              // filename: filePath.path.split('/').last)
+            },
+          ),
+
+          // data:   profile.toJson(),
+          options: Options(
+              headers: _httpHelper.header(type: 'multipart/form-data')));
+      print(res.data['user']);
       debugPrint('Success');
       return 'Success';
     } on DioException catch (e) {
@@ -78,9 +91,11 @@ class ProfileVM extends ChangeNotifier {
 
     Response res = await _httpHelper.getRequest(
         url: LinkApi.linkGetProfile,
-        options: Options(headers: _httpHelper.header()));
+        options:
+            Options(headers: _httpHelper.header(type: 'multipart/form-data')));
     debugPrint('Success');
     Profile profile = Profile.fromJson(res.data['user']);
+    doctorName = profile.name;
     debugPrint('=========================');
 
     return profile;

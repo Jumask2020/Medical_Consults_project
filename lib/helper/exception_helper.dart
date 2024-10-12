@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 
 class ExceptionHelper {
 
+
+
   static handleExceptionArabic(DioException error) {
     switch (error.type) {
       case DioException.badResponse:

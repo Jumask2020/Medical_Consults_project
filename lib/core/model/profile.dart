@@ -5,7 +5,7 @@ class Profile {
   String? city;
   String? displayMajor;
   String? phone;
-  String? categoryId;
+  int? categoryId;
   String? avatar;
   String? bio;
 

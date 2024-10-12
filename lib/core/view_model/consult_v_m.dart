@@ -25,17 +25,17 @@ class ConsultVM {
     }
   }
 
-  Future<List<Consult>?> fetchConsultByID() async {
-    try {
-      Response res = await _httpHelper.getRequest(
-          url: LinkApi.linkGetConsults,
-          options: Options(headers: _httpHelper.header()));
-      List<dynamic> data = res.data['data'];
-      List<Consult> consults =
-          data.map<Consult>((c) => Consult.fromJson(c)).toList();
-      return consults;
-    } on DioException catch (e) {
-      return ExceptionHelper.handleExceptionArabic(e);
-    }
-  }
+  // Future<List<Consult>?> fetchConsultByID() async {
+  //   try {
+  //     Response res = await _httpHelper.getRequest(
+  //         url: LinkApi.linkGetConsults,
+  //         options: Options(headers: _httpHelper.header()));
+  //     List<dynamic> data = res.data['data'];
+  //     List<Consult> consults =
+  //         data.map<Consult>((c) => Consult.fromJson(c)).toList();
+  //     return consults;
+  //   } on DioException catch (e) {
+  //     return ExceptionHelper.handleExceptionArabic(e);
+  //   }
+  // }
 }

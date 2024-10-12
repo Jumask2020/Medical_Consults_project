@@ -39,8 +39,18 @@ class DisplayProfileView extends StatelessWidget {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
+              }else if(snapshot.hasError){
+                return Center(child: Text('حدث خطا ما!',style: TextStyle(fontSize: 20),),);
               }
               return MyContainer(
+                gradient: LinearGradient(
+
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.teal[300]!,
+                      Colors.teal[100]!,
+                ]),
                 height: MediaQuery.of(context).size.height,
                 margin: const EdgeInsets.all(10),
                 padding: const EdgeInsets.all(10),
@@ -61,7 +71,7 @@ class DisplayProfileView extends StatelessWidget {
                               color: Colors.grey,
                               borderRadius: BorderRadius.circular(50),
                               image: DecorationImage(
-                                  image: snapshot.data!.avatar !=
+                                  image: snapshot.data?.avatar !=
                                           'https://cons.actnow-ye.com/'
                                       ? NetworkImage(snapshot.data!.avatar!)
                                       : const AssetImage(
@@ -77,6 +87,7 @@ class DisplayProfileView extends StatelessWidget {
                               Text(snapshot.data?.name ?? ""),
                               Text(snapshot.data?.email ?? ""),
                               Text(snapshot.data?.phone ?? ""),
+                              Text(snapshot.data?.categoryId.toString() ?? ""),
                             ],
                           ),
                         ],
@@ -112,10 +123,13 @@ class DisplayProfileView extends StatelessWidget {
                       ),
                       MyVerticalSize(),
                       MyElvatedButton(
+
                           label: ' تعديل الملف الشخصي',
                           onPressed: () {
+                            profileVM.getAllCategries();
                             Navigator.pushNamed(context, '/addProfile',
-                                arguments: snapshot.data);
+                                arguments: snapshot.data
+                            );
                           }),
                       const MyVerticalSize(),
                       MyElvatedButton(
@@ -136,45 +150,230 @@ class DisplayProfileView extends StatelessWidget {
       ),
     );
   }
-
-  Future<String?> imagePicker(ImageSource source) async {
-    ImagePicker picker = ImagePicker();
-    XFile? image = await picker.pickImage(source: source);
-    return image?.path;
-  }
-
-  void _showDailogImage(BuildContext context, String? pathImage) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => Dialog(
-        child: SizedBox(
-          width: 100,
-          height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                  onPressed: () async {
-                    pathImage = await imagePicker(ImageSource.camera);
-                    print(pathImage);
-                  },
-                  icon: const Icon(
-                    Icons.camera_alt_outlined,
-                    size: 50,
-                  )),
-              IconButton(
-                  onPressed: () async {
-                    pathImage = await imagePicker(ImageSource.gallery);
-                    print(pathImage);
-                  },
-                  icon: const Icon(
-                    Icons.image,
-                    size: 50,
-                  ))
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  //
+  // Future<String?> imagePicker(ImageSource source) async {
+  //   ImagePicker picker = ImagePicker();
+  //   XFile? image = await picker.pickImage(source: source);
+  //   return image?.path;
+  // }
+  //
+  // void _showDailogImage(BuildContext context, String? pathImage) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) => Dialog(
+  //       child: SizedBox(
+  //         width: 100,
+  //         height: 100,
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: [
+  //             IconButton(
+  //                 onPressed: () async {
+  //                   pathImage = await imagePicker(ImageSource.camera);
+  //                   print(pathImage);
+  //                 },
+  //                 icon: const Icon(
+  //                   Icons.camera_alt_outlined,
+  //                   size: 50,
+  //                 )),
+  //             IconButton(
+  //                 onPressed: () async {
+  //                   pathImage = await imagePicker(ImageSource.gallery);
+  //                   print(pathImage);
+  //                 },
+  //                 icon: const Icon(
+  //                   Icons.image,
+  //                   size: 50,
+  //                 ))
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:medical_consult_project/core/view/widget/my_container.dart';
+// import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
+// import 'package:medical_consult_project/core/view_model/profile_v_m.dart';
+//
+// class DisplayProfileView extends StatelessWidget {
+//   DisplayProfileView({super.key});
+//   ProfileVM profileVM = ProfileVM();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//         child: Scaffold(
+//           backgroundColor: Colors.cyan[700],
+//           appBar: AppBar(
+//             backgroundColor: Colors.transparent,
+//             actions: [
+//               Row(
+//                 // mainAxisAlignment: MainAxisAlignment.center,
+//                 // crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: [
+//                   IconButton(onPressed: () {}, icon: Icon(Icons.edit_square)),
+//                   Text("تعدبل الملف الشخصي"),
+//                 ],
+//               )
+//             ],
+//           ),
+//           body: FutureBuilder(
+//               future: profileVM.fetchProfile(),
+//               builder: (ctx, snapshot) {
+//                 if (snapshot.connectionState == ConnectionState.waiting) {
+//                   return Center(
+//                     child: CircularProgressIndicator(),
+//                   );
+//                 } else {
+//                   return Column(
+//                     children: [
+//                       Image.asset(
+//                         height: 180,
+//                         "assets/images/logo.png",
+//                         fit: BoxFit.fill,
+//                       ),
+//                       Expanded(
+//                         child: Stack(
+//                           //clipBehavior: Clip.none,
+//                           children: [
+//                             MyContainer(
+//                               height: MediaQuery.of(context).size.height,
+//                               color: Colors.white,
+//                               child: Column(
+//                                 children: [
+//                                   Stack(clipBehavior: Clip.none, children: [
+//                                     Padding(
+//                                       padding:
+//                                       const EdgeInsets.symmetric(horizontal: 5),
+//                                       child: Row(
+//                                         mainAxisAlignment:
+//                                         MainAxisAlignment.spaceBetween,
+//                                         children: [
+//                                           Text(snapshot.data?.name ?? "",
+//                                               style: TextStyle(
+//                                                   fontWeight: FontWeight.bold,
+//                                                   fontFamily: 'LBC',
+//                                                   fontSize: 20)),
+//                                           IconButton(
+//                                               onPressed: () {},
+//                                               icon: Icon(
+//                                                 Icons.message,
+//                                                 color: Colors.amber,
+//                                               )),
+//                                         ],
+//                                       ),
+//                                     ),
+//                                     Positioned(
+//                                         top: 45,
+//                                         child: Padding(
+//                                           padding: const EdgeInsets.symmetric(
+//                                               horizontal: 10),
+//                                           child: Text(
+//                                             snapshot.data?.displayMajor ?? "",
+//                                             style: TextStyle(
+//                                                 fontWeight: FontWeight.bold,
+//                                                 fontFamily: 'jana',
+//                                                 fontSize: 15),
+//                                           ),
+//                                         )),
+//                                     Positioned(
+//                                       top: 65,
+//                                       right: 0,
+//                                       left: 0,
+//                                       // bottom: -200,
+//                                       child: Divider(
+//                                         height: 20,
+//                                         thickness: 2,
+//                                       ),
+//                                     ),
+//                                     Positioned(
+//                                       bottom: -55,
+//                                       child: Padding(
+//                                         padding: const EdgeInsets.symmetric(
+//                                             horizontal: 5),
+//                                         child: Text(
+//                                           "المدينة",
+//                                           style: TextStyle(
+//                                               fontWeight: FontWeight.bold,
+//                                               fontFamily: 'LBC',
+//                                               fontSize: 20),
+//                                         ),
+//                                       ),
+//                                     ),
+//                                     Positioned(
+//                                       bottom: -85,
+//                                       child: Padding(
+//                                         padding: const EdgeInsets.symmetric(
+//                                             horizontal: 10),
+//                                         child: Text(
+//                                           snapshot.data?.city ?? "",
+//                                           style: TextStyle(
+//                                               fontWeight: FontWeight.bold,
+//                                               fontFamily: 'jana',
+//                                               fontSize: 15),
+//                                         ),
+//                                       ),
+//                                     ),
+//                                     Positioned(
+//                                       top: 125,
+//                                       right: 0,
+//                                       left: 0,
+//                                       // bottom: -200,
+//                                       child: Divider(
+//                                         height: 20,
+//                                         thickness: 2,
+//                                       ),
+//                                     ),
+//                                     Positioned(
+//                                       bottom: -120,
+//                                       child: Padding(
+//                                         padding: const EdgeInsets.symmetric(
+//                                             horizontal: 5),
+//                                         child: Text(
+//                                           "معلومات عن الطبيب",
+//                                           style: TextStyle(
+//                                               fontWeight: FontWeight.bold,
+//                                               fontFamily: 'LBC',
+//                                               fontSize: 20),
+//                                         ),
+//                                       ),
+//                                     ),
+//                                     Positioned(
+//                                         top: 170,
+//                                         bottom: -250,
+//                                         child: Padding(
+//                                           padding: const EdgeInsets.symmetric(
+//                                               horizontal: 10),
+//                                           child: Text(snapshot.data?.bio ?? ""),
+//                                         )),
+//
+//                                     //"fhfghfghfghfjlfjf\nghhfghfghgf\nfggfhgfdghd\ndfgjkgfdgkd\nfgjsfksdhfkhgkdhgghfghfhgd\njkgdbgdfk\nfngjdngjsdfngkds\nfgdsgnjd\ngdgfhgkdfhgkshgjhfghfhdgshgfdsjgfjdsgfjsdgfgfsjhfghgf\nfgngfhfgh\fgngfhfghfg\ngfخريح جامعة غزة في فلسطين ")),
+//                                     Positioned(
+//                                         bottom: -220,
+//                                         right: 5,
+//                                         left: 5,
+//                                         child: MyElvatedButton(
+//                                             label: 'تعديل',
+//                                             onPressed: () {
+//                                               debugPrint("presssed!!!!!!!!!!!");
+//                                               ScaffoldMessenger.of(context)
+//                                                   .showSnackBar(SnackBar(
+//                                                   content: Text("Pressed")));
+//                                             })),
+//                                   ])
+//                                 ],
+//                               ),
+//                             )
+//                           ],
+//                         ),
+//                       )
+//                     ],
+//                   );
+//                 }
+//               }),
+//         ));
+//   }
+// }

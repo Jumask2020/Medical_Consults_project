@@ -4,7 +4,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
+import 'package:medical_consult_project/core/view/screen/splash_view.dart';
+import 'package:medical_consult_project/core/view/screen/test.dart';
+import 'package:medical_consult_project/core/view/widget/app_scaffold.dart';
+import 'package:medical_consult_project/helper/network_service_helper.dart';
 import 'package:medical_consult_project/helper/route_manager.dart';
+import 'package:provider/provider.dart';
 
 import 'helper/http_helper.dart';
 
@@ -38,6 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/splash',
       onGenerateRoute: RouteManager.routeMangaer,
+      // home: const AppScaffold(child: SplashView()),
     );
   }
 }

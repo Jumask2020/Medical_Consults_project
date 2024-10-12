@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
+import 'package:medical_consult_project/core/global/components/isPdfFile.dart';
 import 'package:medical_consult_project/core/model/consult.dart';
 import 'package:medical_consult_project/core/view/widget/my_circular_contanier.dart';
 import 'package:medical_consult_project/core/view/widget/my_elevated_button.dart';
 import 'package:medical_consult_project/core/view/widget/my_horizntal_size.dart';
 import 'package:medical_consult_project/core/view_model/consult_v_m.dart';
-import 'package:provider/provider.dart';
 
-import '../../widget/my_container.dart';
-import '../../widget/my_vertical_size.dart';
+import '../../../global/components/isImageFile.dart';
 
 class ConsultDetails extends StatelessWidget {
   ConsultDetails({super.key});
@@ -17,85 +16,166 @@ class ConsultDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Consult? consult = ModalRoute.settingsOf(context)!.arguments as Consult;
+    Consult? consult = ModalRoute.of(context)!.settings.arguments as Consult;
+
     return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: const Row(
-                children: [
-                  Icon(Icons.text_snippet),
-                  Text("  تفاصيل الاستشارة"),
-                ],
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColor.primaryColor,
+          title: Row(
+            children: [
+              Icon(Icons.text_snippet, color: Colors.white),
+              SizedBox(width: 10),
+              Text(
+                "تفاصيل الاستشارة",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
+            ],
+          ),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: AppColor.secondaryColor,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 6,
+                  offset: Offset(0, 4),
+                ),
+              ],
             ),
-            body: SingleChildScrollView(
-                child: MyContainer(
-              height: MediaQuery.of(context).size.height,
-              margin: const EdgeInsets.all(10),
-              padding: const EdgeInsets.all(10),
-              topLeft: 10,
-              topRight: 10,
-              bottomLeft: 10,
-              bottomRight: 10,
-              color: AppColor.backgroundColor,
-              child: FutureBuilder(
-                  future: _consultVM.fetchAllConsult(),
-                  builder: (context, snapshot) => Column(children: [
-                        Row(
-                          children: [
-                            MyCircularContanier(
-                              assetName: "assets/images/logo.jpg",
-                            ),
-                            const MyVerticalSize(
-                              height: 30,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(Icons.text_snippet_outlined),
-                                Text(consult.title!),
-                              ],
-                            ),
-                            const MyHorizntalSize(
-                                width: 900,
-                                child:
-                                    Divider(color: Colors.grey, thickness: 1)),
-                            MyContainer(
-                              color: AppColor.secondaryColor,
-                              width: MediaQuery.of(context).size.width,
-                              padding: const EdgeInsets.all(10),
-                              child: Text(consult.description!),
-                            ),
-                            const MyVerticalSize(
-                              height: 30,
-                            ),
-                            const Row(
-                              children: [
-                                Icon(Icons.insert_page_break),
-                                Text(" المرفقات الطبية"),
-                              ],
-                            ),
-                            const MyHorizntalSize(
-                                width: 900,
-                                child:
-                                    Divider(color: Colors.grey, thickness: 1)),
-                            MyContainer(
-                              color: AppColor.secondaryColor,
-                              width: MediaQuery.of(context).size.width,
-                              padding: const EdgeInsets.all(10),
-                              child: Text(consult.attachedFile!),
-                            ),
-                            const MyVerticalSize(
-                              height: 30,
-                            ),
-                            MyElvatedButton(
-                                label: "رد",
-                                onPressed: () {
-                                  Navigator.pushNamed(context, "/chatting",
-                                      arguments: consult.id.toString());
-                                })
-                          ],
+            child: Column(
+              children: [
+                // معلومات المريض
+                Row(
+                  children: [
+                    MyCircularContanier(assetName: "assets/images/logo.jpg"),
+                    MyHorizntalSize(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          consult.patient!.name!,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                      ])),
-            ))));
+                        SizedBox(height: 5),
+                        Text("الجنس: ${consult.patient!.age!}"),
+                        SizedBox(height: 5),
+                        Text("العمر: ${consult.patient!.age!}"),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30),
+                // عنوان الاستشارة
+                Row(
+                  children: [
+                    Icon(Icons.text_snippet_outlined, color: Colors.green[700]),
+                    SizedBox(width: 10),
+                    Text(
+                      consult.title!,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Divider(color: Colors.grey[300], thickness: 1),
+                SizedBox(height: 10),
+                // وصف الاستشارة
+                Container(
+                  child: Text(consult.description!),
+                  color: AppColor.secondaryColor,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.all(15),
+                ),
+                SizedBox(height: 30),
+                // المرفقات الطبية
+                Row(
+                  children: [
+                    Icon(Icons.insert_drive_file_outlined,
+                        color: Colors.green[700]),
+                    SizedBox(width: 10),
+                    Text(
+                      "المرفقات الطبية",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Divider(color: Colors.grey[300], thickness: 1),
+                SizedBox(height: 10),
+                isImageFile(consult.attachedFile!)?
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, '/imageView',
+                        arguments: consult.attachedFile!);
+                  },
+                  child: Container(
+                    padding:
+                    const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15),
+                    margin:
+                    const EdgeInsets.symmetric(
+                        vertical: 5),
+                    width: 200,
+                    height: 200,
+                    child: Image.network(
+                      semanticLabel: 'صورة',
+                      consult.attachedFile!,
+                      // width: 150,
+                      // height: 150,
+
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ):isPdfFile(consult.attachedFile!)?GestureDetector(
+                  onTap: () {
+                    // Show PDF in full screen
+                    Navigator.pushNamed(
+                        context, '/pdfView',
+                        arguments: consult.attachedFile);
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(Icons.picture_as_pdf,
+                          color: Colors.red),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          consult.attachedFile
+                              ?.split('/')
+                              .last ??
+                              'PDF File',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ):Text('لايوجد ملف مرفق'),
+
+
+    SizedBox(height: 30),
+
+                MyElvatedButton(
+                  label: "رد",
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/chatting",
+                        arguments: consult.id.toString());
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
