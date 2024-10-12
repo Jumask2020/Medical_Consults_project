@@ -7,9 +7,13 @@ import 'package:medical_consult_project/core/view/widget/my_circular_contanier.d
 import 'package:medical_consult_project/core/view/widget/my_container.dart';
 import 'package:medical_consult_project/core/view/widget/my_horizntal_size.dart';
 import 'package:medical_consult_project/core/view/widget/my_vertical_size.dart';
+import 'package:medical_consult_project/core/view_model/consult_v_m.dart';
+import 'package:medical_consult_project/core/view_model/profile_v_m.dart';
 
 class DashBoardView extends StatelessWidget {
-  const DashBoardView({super.key});
+  DashBoardView({super.key});
+  ProfileVM profileVM = ProfileVM();
+  ConsultVM consultVM = ConsultVM();
 
   @override
   Widget build(BuildContext context) {
@@ -25,125 +29,144 @@ class DashBoardView extends StatelessWidget {
               onChanged: (value) {})
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    top: 3,
-                    child: MyContainer(
-                      margin: EdgeInsets.only(top: 50, left: 40),
-                      topRight: 30,
-                      topLeft: 30,
-                      color: const Color.fromARGB(255, 35, 201, 110),
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                  ),
-                  Positioned(
-                    right: 120,
-                    child: MyCircularContanier(
-                      radius: 80,
-                    ),
-                  ),
-                  Positioned(
-                      top: 100,
-                      right: 90,
-                      child: Column(
+      body: FutureBuilder(
+          future: consultVM.fetchConsultByID(),
+          builder: (ctx, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        clipBehavior: Clip.none,
                         children: [
-                          Text(
-                            "مرحبًا",
-                            style: TextStyle(
-                                fontFamily: 'LBC',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25),
+                          Positioned(
+                            top: 3,
+                            child: MyContainer(
+                              margin: EdgeInsets.only(top: 50, left: 40),
+                              topRight: 30,
+                              topLeft: 30,
+                              color: const Color.fromARGB(255, 35, 201, 110),
+                              height: 200,
+                              width: MediaQuery.of(context).size.width,
+                            ),
                           ),
-                          MyVerticalSize(
-                            height: 20,
+                          Positioned(
+                            right: 120,
+                            child: MyCircularContanier(
+                              radius: 80,
+                            ),
                           ),
-                          Text(
-                            "د.جمعان عسكول",
-                            style: TextStyle(
-                                fontFamily: 'LBC',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20),
+                          Positioned(
+                              top: 100,
+                              right: 90,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "مرحبًا",
+                                    style: TextStyle(
+                                        fontFamily: 'LBC',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25),
+                                  ),
+                                  MyVerticalSize(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    ".د${profileVM.doctorName ?? ""}",
+                                    style: TextStyle(
+                                        fontFamily: 'LBC',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ],
+                              )),
+                          Positioned(
+                            top: 250,
+                            child: Text(
+                              "ملخص العمليات",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'LBC',
+                                  fontSize: 20),
+                            ),
                           ),
                         ],
-                      )),
-                  Positioned(
-                    top: 250,
-                    child: Text(
-                      "ملخص العمليات",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'LBC',
-                          fontSize: 20),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Grid view at the bottom
-            Container(
-              height: 200, // Set height for the grid
-              child: GridView.count(
-                crossAxisCount: 2, // Number of columns
-                childAspectRatio: 2,
-                // Aspect ratio of child items
-                children: [
-                  Card(
-                    //color: Colors.transparent,
-                    child: MyContainer(
-                      topRight: 50,
-                      color: Colors.greenAccent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("5"), Icon(Icons.timer_outlined)],
                       ),
                     ),
-                  ),
-                  Card(
-                    child: MyContainer(
-                      topLeft: 50,
-                      color: Colors.cyan,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("5"), Icon(Icons.done_all_outlined)],
+                    // Grid view at the bottom
+                    Container(
+                      height: 200, // Set height for the grid
+                      child: GridView.count(
+                        crossAxisCount: 2, // Number of columns
+                        childAspectRatio: 2,
+                        // Aspect ratio of child items
+                        children: [
+                          Card(
+                            //color: Colors.transparent,
+                            child: MyContainer(
+                              topRight: 50,
+                              color: Colors.greenAccent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("5"),
+                                  Icon(Icons.timer_outlined)
+                                ],
+                              ),
+                            ),
+                          ),
+                          Card(
+                            child: MyContainer(
+                              topLeft: 50,
+                              color: Colors.cyan,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("5"),
+                                  Icon(Icons.done_all_outlined)
+                                ],
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0,
+                            child: MyContainer(
+                              bottomRight: 50,
+                              color: Colors.cyan,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Text("5"), Icon(Icons.star)],
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0,
+                            child: MyContainer(
+                              bottomLeft: 50,
+                              color: Colors.greenAccent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("5"),
+                                  Icon(Icons.question_answer)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  Card(
-                    elevation: 0,
-                    child: MyContainer(
-                      bottomRight: 50,
-                      color: Colors.cyan,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("5"), Icon(Icons.star)],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 0,
-                    child: MyContainer(
-                      bottomLeft: 50,
-                      color: Colors.greenAccent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("5"), Icon(Icons.question_answer)],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                  ],
+                ),
+              );
+            }
+          }),
       bottomNavigationBar: BottomNavigationBar(
         // onTap: _onItemTapped,
         backgroundColor: AppColor.secondaryColor,

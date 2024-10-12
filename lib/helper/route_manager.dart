@@ -7,6 +7,7 @@ import 'package:medical_consult_project/core/view/screen/profile/add_profile_vie
 import 'package:medical_consult_project/core/view/screen/auth/signin.dart';
 import 'package:medical_consult_project/core/view/screen/auth/signup_view.dart';
 import 'package:medical_consult_project/core/view/screen/home_view.dart';
+import 'package:medical_consult_project/core/view/screen/profile/display_profile_screen.dart';
 import 'package:medical_consult_project/core/view/screen/profile/display_profile_view.dart';
 import 'package:medical_consult_project/core/view/screen/splash_view.dart';
 
@@ -38,6 +39,10 @@ class RouteManager {
       case '/displayProfile':
         return MaterialPageRoute(
           builder: (context) => DisplayProfileView(),
+        );
+      case '/displayProfileScreen':
+        return MaterialPageRoute(
+          builder: (context) => DisplayProfileScreen(),
         );
       case '/newConsults':
         return MaterialPageRoute(

@@ -20,7 +20,7 @@ class HttpHelper {
     final Map<String, String> header = {
       // 'authorization': 'Bearer $token',
       'authorization':
-          'Bearer 19|YfKAJ3eoEhiLHdI1LLYn1JiWHw7XIlMqTRm60sJz1b2e5e60',
+          'Bearer  40|KZeLmXWIqkD2ueyBmjwsT1lexHahCZtpZjzJ1slA3dbf8b32',
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };

@@ -76,6 +76,9 @@ flutter:
      - family: LBC
        fonts:
          - asset: assets/fonts/LBC Regular.ttf
+     - family: jana
+       fonts:
+         - asset: assets/fonts/JANA.TTF
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

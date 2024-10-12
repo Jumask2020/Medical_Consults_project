@@ -9,6 +9,7 @@ import 'package:medical_consult_project/helper/storge_helper.dart';
 
 class ProfileVM {
   final HttpHelper _httpHelper = HttpHelper.instance;
+  String? doctorName;
   Future<String> addProfile(Profile profile) async {
     try {
       await _httpHelper.postRequest(
@@ -34,6 +35,7 @@ class ProfileVM {
         options: Options(headers: _httpHelper.header()));
     debugPrint('Success');
     Profile profile = Profile.fromJson(res.data['user']);
+    doctorName = profile.name;
     debugPrint('=========================');
 
     return profile;
