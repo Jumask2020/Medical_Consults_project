@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:medical_consult_project/core/constant/app_color.dart';
 import 'package:medical_consult_project/core/view/screen/consults/chatting_view.dart';
 import 'package:medical_consult_project/core/view/screen/consults/new_consults_view.dart';
@@ -20,17 +21,11 @@ class DashBoardView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        actions: [
-          Switch(
-              value: true,
-              // focusColor: Colors.blue,
-              // hoverColor: Colors.blueAccent,
-              activeColor: const Color.fromARGB(255, 209, 255, 211),
-              onChanged: (value) {})
-        ],
+        title: Text("الرئيسية"),
+        backgroundColor: Colors.teal,
       ),
       body: FutureBuilder(
-          future: consultVM.fetchConsultByID(),
+          future: consultVM.fetchAllConsult(),
           builder: (ctx, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -38,22 +33,30 @@ class DashBoardView extends StatelessWidget {
               );
             } else {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
                     Expanded(
                       child: Stack(
-                        clipBehavior: Clip.none,
+                        // clipBehavior: Clip.none,
                         children: [
                           Positioned(
                             top: 3,
+                            left: 5,
+                            right: 5,
                             child: MyContainer(
-                              margin: EdgeInsets.only(top: 50, left: 40),
+                              margin: EdgeInsets.only(
+                                top: 50,
+                              ),
                               topRight: 30,
                               topLeft: 30,
-                              color: const Color.fromARGB(255, 35, 201, 110),
+                              color: Colors.teal,
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/back.jpg"),
+                                fit: BoxFit.cover,
+                              ),
                               height: 200,
-                              width: MediaQuery.of(context).size.width,
+                              width: 200,
                             ),
                           ),
                           Positioned(
@@ -64,8 +67,12 @@ class DashBoardView extends StatelessWidget {
                           ),
                           Positioned(
                               top: 100,
-                              right: 90,
+                              // right: 90,
+                              left: 10,
+                              right: 10,
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                // mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "مرحبًا",
@@ -87,13 +94,25 @@ class DashBoardView extends StatelessWidget {
                                 ],
                               )),
                           Positioned(
-                            top: 250,
-                            child: Text(
-                              "ملخص العمليات",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'LBC',
-                                  fontSize: 20),
+                            top: 260,
+                            right: 5,
+                            child: Row(
+                              children: [
+                                Text(
+                                  "ملخص العمليات",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'LBC',
+                                      fontSize: 20),
+                                ),
+                                MyHorizntalSize(
+                                  width: 3,
+                                ),
+                                SpinKitWave(
+                                  size: 20,
+                                  color: Colors.teal,
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -108,55 +127,135 @@ class DashBoardView extends StatelessWidget {
                         // Aspect ratio of child items
                         children: [
                           Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
                             //color: Colors.transparent,
-                            child: MyContainer(
-                              topRight: 50,
-                              color: Colors.greenAccent,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("5"),
-                                  Icon(Icons.timer_outlined)
-                                ],
-                              ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 8),
+                                Text("${consultVM.getWaitingPatientCount()}",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.amber)),
+                                SizedBox(height: 2),
+                                Text("الاستشارات المنتظرة",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'LBC',
+                                        fontSize: 16,
+                                        color: Colors.amber)),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.vertical(
+                                //       top: Radius.circular(15)),
+                                //   child: Image.asset(
+                                //     'assets/images/doctor.png', // Your image path
+                                //     height: double.infinity,
+                                //     width: double.infinity,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                //   ),
+                              ],
                             ),
                           ),
                           Card(
-                            child: MyContainer(
-                              topLeft: 50,
-                              color: Colors.cyan,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("5"),
-                                  Icon(Icons.done_all_outlined)
-                                ],
-                              ),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 8),
+                                Text("${consultVM.getWaitingDoctorCount()}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'LBC',
+                                        fontSize: 30,
+                                        color: Colors.teal)),
+                                SizedBox(height: 2),
+                                Text("جميع الإستشارات",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'LBC',
+                                        fontSize: 16,
+                                        color: Colors.teal)),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.vertical(
+                                //       top: Radius.circular(15)),
+                                //   child: Image.asset(
+                                //     'assets/images/doctor.png', // Your image path
+                                //     height: double.infinity,
+                                //     width: double.infinity,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                //   ),
+                              ],
                             ),
                           ),
                           Card(
-                            elevation: 0,
-                            child: MyContainer(
-                              bottomRight: 50,
-                              color: Colors.cyan,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text("5"), Icon(Icons.star)],
-                              ),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 8),
+                                Text("${consultVM.getRejectCount()}",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: const Color.fromARGB(
+                                            255, 255, 7, 7))),
+                                SizedBox(height: 2),
+                                Text("الاستشارات المرفوضة",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'LBC',
+                                        fontSize: 16,
+                                        color: const Color.fromARGB(
+                                            255, 255, 7, 7))),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.vertical(
+                                //       top: Radius.circular(15)),
+                                //   child: Image.asset(
+                                //     'assets/images/doctor.png', // Your image path
+                                //     height: double.infinity,
+                                //     width: double.infinity,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                //   ),
+                              ],
                             ),
                           ),
                           Card(
-                            elevation: 0,
-                            child: MyContainer(
-                              bottomLeft: 50,
-                              color: Colors.greenAccent,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("5"),
-                                  Icon(Icons.question_answer)
-                                ],
-                              ),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 8),
+                                Text("${consultVM.getCompleteCount()}",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green[500])),
+                                SizedBox(height: 2),
+                                Text("الاستشارات المكتلمة",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'LBC',
+                                        fontSize: 16,
+                                        color: Colors.green[500])),
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.vertical(
+                                //       top: Radius.circular(15)),
+                                //   child: Image.asset(
+                                //     'assets/images/doctor.png', // Your image path
+                                //     height: double.infinity,
+                                //     width: double.infinity,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                //   ),
+                              ],
                             ),
                           ),
                         ],
@@ -171,7 +270,7 @@ class DashBoardView extends StatelessWidget {
         // onTap: _onItemTapped,
         backgroundColor: AppColor.secondaryColor,
         unselectedItemColor: AppColor.primaryColor,
-        selectedItemColor: Colors.purple,
+        selectedItemColor: Colors.teal,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         //  currentIndex: _selectedIndex,

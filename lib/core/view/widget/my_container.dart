@@ -13,7 +13,7 @@ class MyContainer extends StatelessWidget {
 
   final  EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
-
+  final DecorationImage? image;
   const MyContainer(
       {super.key, this.height,
       this.padding,
@@ -24,7 +24,8 @@ class MyContainer extends StatelessWidget {
       this.topRight,
       this.topLeft,
       this.bottomRight ,
-      this.bottomLeft });
+      this.bottomLeft ,
+      this.image});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +35,7 @@ class MyContainer extends StatelessWidget {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
+        image:image ,
           color: color,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(topRight??10),

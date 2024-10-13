@@ -10,7 +10,14 @@ import '../constant/link_api.dart';
 
 class ConsultVM {
   final HttpHelper _httpHelper = HttpHelper.instance;
-
+  List<Consult>? complete;
+  List<Consult>? waiting_patient;
+  List<Consult>? waiting_doctor;
+  List<Consult>? reject;
+  // int? noComplet;
+  ConsultVM() {
+    // fetchAllConsult();
+  }
   Future<List<Consult>?> fetchAllConsult() async {
     try {
       Response res = await _httpHelper.getRequest(
@@ -19,23 +26,54 @@ class ConsultVM {
       List<dynamic> data = res.data['data'];
       List<Consult> consults =
           data.map<Consult>((c) => Consult.fromJson(c)).toList();
+      // List<int> comp = res.data['data']['status'];
+      complete = consults.where((c) => c.status == 'complete').toList();
+      print("+===============================");
+      print(complete);
+      print(complete!.length);
+      // noComplet = complete!.length;
+      waiting_patient =
+          consults.where((c) => c.status == 'waiting_patient').toList();
+
+      waiting_doctor =
+          consults.where((c) => c.status == 'waiting_doctor').toList();
+      reject = consults.where((c) => c.status == 'reject').toList();
+      print("%%%%%%%%%%%####################");
+      print(consults);
+      print(consults.length);
       return consults;
     } on DioException catch (e) {
       return ExceptionHelper.handleExceptionArabic(e);
     }
   }
 
-  Future<List<Consult>?> fetchConsultByID() async {
-    try {
-      Response res = await _httpHelper.getRequest(
-          url: LinkApi.linkGetConsults,
-          options: Options(headers: _httpHelper.header()));
-      List<dynamic> data = res.data['data'];
-      List<Consult> consults =
-          data.map<Consult>((c) => Consult.fromJson(c)).toList();
-      return consults;
-    } on DioException catch (e) {
-      return ExceptionHelper.handleExceptionArabic(e);
-    }
+  int getCompleteCount() {
+    return complete?.length ?? 0;
   }
+
+  int getWaitingPatientCount() {
+    return waiting_patient?.length ?? 0;
+  }
+
+  int getWaitingDoctorCount() {
+    return waiting_doctor?.length ?? 0;
+  }
+
+  int getRejectCount() {
+    return reject?.length ?? 0;
+  }
+
+  // Future<List<Consult>?> fetchConsultByID() async {
+  //   try {
+  //     Response res = await _httpHelper.getRequest(
+  //         url: LinkApi.linkGetConsults,
+  //         options: Options(headers: _httpHelper.header()));
+  //     List<dynamic> data = res.data['data'];
+  //     List<Consult> consults =
+  //         data.map<Consult>((c) => Consult.fromJson(c)).toList();
+  //     return consults;
+  //   } on DioException catch (e) {
+  //     return ExceptionHelper.handleExceptionArabic(e);
+  //   }
+  // }
 }
