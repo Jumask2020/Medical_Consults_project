@@ -11,17 +11,20 @@ class DisplayProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.cyan[700],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.teal,
         actions: [
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.edit_square)),
-              Text("تعدبل الملف الشخصي"),
-            ],
+          Align(
+            alignment: Alignment.centerRight,
+            child: Row(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                IconButton(onPressed: () {}, icon: Icon(Icons.edit_square)),
+                Text("تعدبل الملف الشخصي"),
+              ],
+            ),
           )
         ],
       ),
@@ -35,145 +38,109 @@ class DisplayProfileScreen extends StatelessWidget {
             } else {
               return Column(
                 children: [
-                  Image.asset(
-                    "assets/images/doctor.png",
-                    fit: BoxFit.fill,
+                  MyContainer(
+                    color: Colors.teal,
+                    topLeft: 0,
+                    topRight: 0,
+                    bottomRight: 100,
+                    height: MediaQuery.of(context).size.height / 4,
                   ),
                   Expanded(
+                    flex: 1,
                     child: Stack(
-                      //clipBehavior: Clip.none,
+                      clipBehavior: Clip.none,
                       children: [
-                        MyContainer(
-                          height: MediaQuery.of(context).size.height,
-                          color: Colors.white,
-                          child: Column(
-                            children: [
-                              Stack(clipBehavior: Clip.none, children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(snapshot.data?.name ?? "",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'LBC',
-                                              fontSize: 20)),
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.message,
-                                            color: Colors.amber,
-                                          )),
-                                    ],
-                                  ),
-                                ),
-                                Positioned(
-                                    top: 45,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Text(
-                                        snapshot.data?.displayMajor ?? "",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'jana',
-                                            fontSize: 15),
-                                      ),
-                                    )),
-                                Positioned(
-                                  top: 65,
-                                  right: 0,
-                                  left: 0,
-                                  // bottom: -200,
-                                  child: Divider(
-                                    height: 20,
-                                    thickness: 2,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: -55,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: Text(
-                                      "المدينة",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'LBC',
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: -85,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Text(
-                                      snapshot.data?.city ?? "",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'jana',
-                                          fontSize: 15),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 125,
-                                  right: 0,
-                                  left: 0,
-                                  // bottom: -200,
-                                  child: Divider(
-                                    height: 20,
-                                    thickness: 2,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: -120,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: Text(
-                                      "معلومات عن الطبيب",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'LBC',
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                    top: 170,
-                                    bottom: -250,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Text(snapshot.data?.bio ?? ""),
-                                    )),
-
-                                //"fhfghfghfghfjlfjf\nghhfghfghgf\nfggfhgfdghd\ndfgjkgfdgkd\nfgjsfksdhfkhgkdhgghfghfhgd\njkgdbgdfk\nfngjdngjsdfngkds\nfgdsgnjd\ngdgfhgkdfhgkshgjhfghfhdgshgfdsjgfjdsgfjsdgfgfsjhfghgf\nfgngfhfgh\fgngfhfghfg\ngfخريح جامعة غزة في فلسطين ")),
-                                Positioned(
-                                    bottom: -300,
-                                    right: 0,
-                                    left: 0,
-                                    child: MyElvatedButton(
-                                        label: 'تعديل',
-                                        onPressed: () {
-                                          debugPrint("presssed!!!!!!!!!!!");
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                                  content: Text("Pressed")));
-                                        })),
-                              ])
-                            ],
-                          ),
-                        )
+                        Positioned(
+                            left: 10,
+                            top: (MediaQuery.of(context).size.height / 800) -
+                                100,
+                            child: ClipRRect(
+                              child: Image.asset(
+                                "assets/images/doctor.png",
+                                fit: BoxFit.fill,
+                                height: 150,
+                                width: 150,
+                              ),
+                            )),
                       ],
                     ),
-                  )
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Divider(
+                            height: 20,
+                            thickness: 2,
+                          ),
+                          Text(
+                            "الدكتور : ${snapshot.data?.name ?? "علي ماجد"}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'LBC',
+                                fontSize: 15),
+                          ),
+                          Divider(
+                            height: 20,
+                            thickness: 2,
+                          ),
+                          Text(
+                            "التخصص : ${snapshot.data?.displayMajor ?? "مخ وأعصاب"}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'jana',
+                                fontSize: 15),
+                          ),
+                          Divider(
+                            height: 20,
+                            thickness: 2,
+                          ),
+                          Text(
+                            "المدينة : ${snapshot.data?.city ?? "حضرموت"}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'jana',
+                                fontSize: 15),
+                          ),
+                          Divider(
+                            height: 20,
+                            thickness: 2,
+                          ),
+                          Text(
+                            "عن الطبيب : ${snapshot.data?.bio ?? "خريج جامعة حضرموت تخصص مخ وأعصاب"}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'jana',
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  MyContainer(
+                    color: Colors.teal,
+                    topLeft: 100,
+                    topRight: 0,
+                    width: MediaQuery.of(context).size.width,
+                    height: (MediaQuery.of(context).size.height / 4) - 80,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyElvatedButton(
+                            backgroundColor: Colors.white,
+                            textColor: Colors.teal,
+                            label: 'تعديل',
+                            onPressed: () {
+                              debugPrint("presssed!!!!!!!!!!!");
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Pressed")));
+                            }),
+                      ],
+                    ),
+                  ),
                 ],
               );
             }

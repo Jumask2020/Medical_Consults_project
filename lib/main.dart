@@ -35,8 +35,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: false,
+        //textTheme: TextTheme(TextStyle(s))
       ),
-      initialRoute: '/signup',
+      initialRoute: '/displayProfileScreen',
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }
