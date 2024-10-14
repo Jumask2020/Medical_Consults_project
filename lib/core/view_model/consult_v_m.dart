@@ -8,12 +8,13 @@ import 'package:medical_consult_project/helper/storge_helper.dart';
 
 import '../constant/link_api.dart';
 
-class ConsultVM {
+class ConsultVM extends ChangeNotifier {
   final HttpHelper _httpHelper = HttpHelper.instance;
   List<Consult>? complete;
   List<Consult>? waiting_patient;
   List<Consult>? waiting_doctor;
   List<Consult>? reject;
+  bool isSelected = false;
   // int? noComplet;
   ConsultVM() {
     // fetchAllConsult();
@@ -41,6 +42,8 @@ class ConsultVM {
       print("%%%%%%%%%%%####################");
       print(consults);
       print(consults.length);
+      isSelected = !isSelected;
+      notifyListeners();
       return consults;
     } on DioException catch (e) {
       return ExceptionHelper.handleExceptionArabic(e);
@@ -61,6 +64,22 @@ class ConsultVM {
 
   int getRejectCount() {
     return reject?.length ?? 0;
+  }
+
+  Future<String> closeConsult(int? id) async {
+    try {
+      Response res = await _httpHelper.postRequest(
+          url: LinkApi.linkCloseConsults,
+          data: {'id': id, 'status': 'completed'},
+          options: Options(headers: _httpHelper.header()));
+      isSelected = !isSelected;
+      notifyListeners();
+      return "success";
+    } on DioException catch (e) {
+      return ExceptionHelper.handleExceptionArabic(e);
+    } catch (e) {
+      return "$e";
+    }
   }
 
   // Future<List<Consult>?> fetchConsultByID() async {

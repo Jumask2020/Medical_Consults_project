@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: false,
       ),
-      initialRoute: '/dashBoard',
+      initialRoute: '/signup',
       onGenerateRoute: RouteManager.routeMangaer,
     );
   }
